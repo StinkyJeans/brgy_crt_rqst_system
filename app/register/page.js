@@ -64,6 +64,11 @@ const [gender, setGender] = useState("")
   const handleSubmit = async (e) => {
     setError("");
     e.preventDefault();
+
+    
+    if (!isValidEmail(email)){
+      setError("Email is invalid")
+    }
   
     try {
       const formData = new FormData();
