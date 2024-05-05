@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import FilePicker from '../components/FilePicker';
+import { useEdgeStore } from '../lib/edgestore';
 
 
 
@@ -58,7 +59,7 @@ const [gender, setGender] = useState("")
       setGender(target.value);
     }
   }
-  
+
 
   const handleSubmit = async (e) => {
     setError("");
@@ -75,6 +76,13 @@ const [gender, setGender] = useState("")
       formData.append('gender', gender);
 
 
+      const edge = await edgestore.publicFiles.upload({
+        file,
+        onProgressChange: (progress) => {
+          // you can use this to show a progress bar
+          console.log(progress);
+        },
+      });
   
       const res = await fetch("/api/register", {
         method: "POST",
@@ -88,7 +96,8 @@ const [gender, setGender] = useState("")
           email, 
           password, 
           birthDate, 
-          gender
+          gender,
+          image: edge.url
         }),
       });
 
@@ -104,9 +113,12 @@ const [gender, setGender] = useState("")
       console.error("Error:", error);
     }
   };
+  
   const handleFileChange = (file) => {
     setFile(file);
   };
+  const [file, setFile] = React.useState();
+  const { edgestore } = useEdgeStore();
   
   return (
     
@@ -169,10 +181,12 @@ const [gender, setGender] = useState("")
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
-           {/* File picker */}
-             {/* <FilePicker onChange={handleFileChange} /> */}
-  
-            {/* Button and link */}
+          <input
+        type="file"
+        onChange={(e) => {
+          setFile(e.target.files?.[0]);
+        }}
+      />
             <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
               Register
             </button>

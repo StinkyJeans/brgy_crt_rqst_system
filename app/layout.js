@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import { EdgeStoreProvider } from './lib/edgestore';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -14,10 +15,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+      <EdgeStoreProvider>
         <div className="mx-auto max-w-5xl text-2xl gap-2 mb-10">
         <Navbar/>
         {children}
         </div>
+        </EdgeStoreProvider>
         </body>
     </html>
   );
