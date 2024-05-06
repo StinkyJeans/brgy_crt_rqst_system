@@ -124,59 +124,86 @@ const [gender, setGender] = useState("")
   };
   const [file, setFile] = React.useState();
   const { edgestore } = useEdgeStore();
+
   
   return (
-    
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
-        <div className="bg-[#212121] p-8 rounded shadow-md w-96">
-          <h1 className="text-4xl text-center font-semibold mb-8">Register</h1>
-          <p className="text-red-600 text-[16px] mb-4">{error && error}</p>
-          <form onSubmit={handleSubmit}>
-            First Name:<input type="text" 
-            className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black" 
+    <div className="absolute inset-0 bg-cover bg-center z-[-1]" style={{ backgroundImage: "url('./login-bg.png')" }}>
+
+    <div className="flex  ml-[50%] justify-between mt-[10%] pr-[10%] "> 
+    <div className="bg-white/[.8] p-6 rounded shadow-md w-[100%] mr-[25%]"> 
+      <h1 className="text-2xl text-center font-semibold mb-6 text-black">Register</h1> 
+      <p className="text-red-600 text-[14px] mb-2">{error && error}</p> 
+      <form onSubmit={handleSubmit} className="grid grid-cols-3 gap-4">
+        <div>
+        <p className="text-base/8 text-black">First Name:</p>
+          <input 
+            type="text"
+            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black"
             name="firstName"
             value={firstName}
             onChange={onChange}
             required
-            />
-            Middle Name:<input type="text" 
-            className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black" 
+          />
+        </div>
+        <div>
+          <p className="text-base/8 text-black">Middle Name:</p>
+          <input 
+            type="text"
+            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black"
             name="middleName"
             value={middleName}
             onChange={onChange}
             required
-            />
-            Last Name:<input type="text" 
-            className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black" 
+          />
+        </div>
+        <div>
+        <p className="text-base/8 text-black">Last Name:</p>
+          <input 
+            type="text"
+            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black"
             name="lastName"
             value={lastName}
             onChange={onChange}
             required
-            />
-            Email:<input type="text" 
-            className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black" 
+          />
+        </div>
+        <div>
+        <p className="text-base/8 text-black">Email:</p>
+          <input 
+            type="text"
+            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black"
             name="email"
             value={email}
             onChange={onChange}
             required
-            />
-            Password:<input type="password" 
-            className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black" 
+          />
+        </div>
+        <div>
+        <p className="text-base/8 text-black">Password:</p>
+          <input 
+            type="password"
+            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black"
             name="password"
             value={password}
             onChange={onChange}
             required
-            />
-            Birth Date:<input type="date" 
-            className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black" 
+          />
+        </div>
+        <div>
+        <p className="text-base/8 text-black">Birth Date:</p>
+          <input 
+            type="date"
+            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black"
             name="birthDate"
             value={birthDate}
             onChange={onChange}
             required
-            />
-          <label htmlFor="gender">Gender:</label>
+          />
+        </div>
+        <div className="col-span-3 text-black">
+          <label className='text-base/8' htmlFor="gender">Gender:</label>
           <select
-            className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black"
+            className="w-50 border border-gray-300 text-black rounded  mb-4 focus:outline-none focus:border-blue-400 focus:text-black"
             name="gender"
             value={gender}
             onChange={onChange}
@@ -186,22 +213,29 @@ const [gender, setGender] = useState("")
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
-          <input
-        type="file"
-        onChange={(e) => {
-          setFile(e.target.files?.[0]);
-        }}
-      />
-            <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
-              Register
-            </button>
-          </form>
-          <div className="text-center text-gray-500 mt-4">- OR -</div>
-          <Link className="block text-center text-blue-500 hover:underline mt-2" href="/login">
-          Login with an existing account
-          </Link>
         </div>
+        <div className="col-span-3 text-black ">
+        <p className="text-base/10 text-black">Please Upload ID:</p>
+          <input
+            type="file"
+            onChange={(e) => {
+              setFile(e.target.files?.[0]);
+            }}
+          />
+        </div>
+        <button type="submit" className="col-span-3 w-full bg-blue-500 text-white py-1 rounded hover:bg-blue-600"> 
+          Register
+        </button>
+      </form>
+      <div className="text-center text-gray-500 mt-2">- OR -</div>
+      <Link className="block text-center text-blue-500 hover:underline mt-1" href="/login"> 
+        Login with an existing account
+      </Link>
     </div>
+  </div>
+  </div>
+
+  
   )
 }
 

@@ -12,7 +12,7 @@ const Login = () => {
 
   useEffect(() => {
     if(session?.status === "authenticated"){
-      router.replace("/dashboard");
+      router.replace("/");
     }
   }, [session, router])
   
@@ -41,7 +41,7 @@ const Login = () => {
 
     if(res?.error){
       setError("Invalid email or password");
-      if(res?.url) router.replace("/dashboard");
+      if(res?.url) router.replace("/");
     } else {
       setError("");
     }
@@ -49,16 +49,18 @@ const Login = () => {
    
   };
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
-        <div className="bg-[#212121] p-8 rounded shadow-md w-96">
-          <h1 className="text-4xl text-center font-semibold mb-8">Login</h1>
+    <div className="absolute inset-0 bg-cover bg-center z-[-1]" style={{ backgroundImage: "url('./login-bg.png')" }}>
+
+    <div className="flex flex-col ml-[54%] justify-between pt-20 mt-[7%]">
+        <div className="bg-white/[.8] p-8 rounded shadow-md w-96 relative z-10">
+          <h1 className="text-4xl text-black text-center font-semibold mb-8">Login</h1>
           <p className="text-red-600 text-[16px] mb-4">{error && error}</p>
           <form onSubmit={handleSubmit}>
-            Email:<input type="text" 
+          <p className="text-base/10 text-black">Email:</p><input type="text" 
             className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black" 
             required
             />
-            Password:<input type="password" 
+            <p className="text-base/10 text-black">Password:</p><input type="password" 
             className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black" 
             required
             />
@@ -71,8 +73,10 @@ const Login = () => {
           <Link className="block text-center text-blue-500 hover:underline mt-2" href="/register">
           Register here
           </Link>
+         
         </div>
     </div>
+   </div>
   )
 }
 
