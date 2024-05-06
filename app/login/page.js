@@ -53,7 +53,7 @@ const Login = () => {
 
     <div className="flex flex-col ml-[54%] justify-between pt-20 mt-[7%]">
         <div className="bg-white/[.8] p-8 rounded shadow-md w-96 relative z-10">
-          <h1 className="text-4xl text-black text-center font-semibold mb-8">Login</h1>
+          <h1 className="text-3xl text-black text-center font-semibold mb-8">Login</h1>
           <p className="text-red-600 text-[16px] mb-4">{error && error}</p>
           <form onSubmit={handleSubmit}>
           <p className="text-base/10 text-black">Email:</p><input type="text" 

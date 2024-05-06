@@ -12,12 +12,12 @@ const Navbar = () => {
         <div>
             <ul className="flex justify-between m-10 items-center">
                 <div className="flex items-center">
-                    <img src="/logo.png" alt="Logo" className="h-8 w-auto" />
+                    <img src="/logo.png" alt="Logo" className="h-20 w-auto" />
                     <Link href="/">
-                        <li className="ml-2">Home</li>
+                        <li className="ml-2 text-base">Home</li>
                     </Link>
                 </div>
-                <div className="flex gap-10">
+                <div className="flex gap-5 text-base/10">
 
                     {!session ? (
                         <>
@@ -31,14 +31,19 @@ const Navbar = () => {
                         </>
                     ) : (
                         <> 
-                            {session.user?.email}
+                          
+                          <Link href="/userInfo">
+                          {session.user?.email}
+                          </Link>
+
+                            
                             <li>
                                 <button
                                     onClick={() => {
                                         signOut();
                                     }}
                                     href="/login"
-                                    className="p-2 px-5 -mt-1 bg-blue-800 rounded-full"
+                                    className=" px-5 -mt-1 bg-blue-800 rounded-full hover:bg-sky-700 text-base/8"
                                 >
                                     Logout
                                 </button>
