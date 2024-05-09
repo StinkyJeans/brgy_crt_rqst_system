@@ -6,6 +6,7 @@ import { EdgeStoreProvider } from './lib/edgestore';
 import { getServerSession } from "next-auth";
 import SessionProvider from "./utils/SessionProvider";
 import Footer from "./components/Footer";
+import Homepage from "./homepage/page";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,11 +23,13 @@ export default async function RootLayout({ children }) {
         {/* <div className="absolute inset-0 bg-cover bg-center z-[-1]" style={{ backgroundImage: "url('./login-bg.png')" }}> */}
           <SessionProvider session={session}>
             <EdgeStoreProvider>
+
               <div className="mx-auto max-w-5xl text-2xl">
-                <Navbar />
+              <Navbar />
                 {children}
-                <Footer />
+         
               </div>
+              <Footer />
             </EdgeStoreProvider>
           </SessionProvider>
         {/* </div> */}

@@ -16,7 +16,7 @@ export const authOptions = {
       },
       async authorize(credentials) {
         try {
-          await connect(); // Ensure MongoDB connection
+          await connect(); 
           const user = await User.findOne({ email: credentials.email });
           if (user) {
             const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password);
@@ -26,9 +26,9 @@ export const authOptions = {
           }
         } catch (err) {
           console.error("Error during authentication:", err);
-          return null; // Return null if authentication fails
+          return null;
         }
-        return null; // Return null if user not found or password incorrect
+        return null; 
       }
     }),
     GithubProvider({

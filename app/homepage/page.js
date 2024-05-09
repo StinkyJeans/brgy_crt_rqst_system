@@ -1,25 +1,23 @@
 "use client"
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+
 import { useSession } from 'next-auth/react';
-
+import React from 'react'
 import {  DocumentTextIcon} from '@heroicons/react/solid';
+import { useRouter } from 'next/navigation';
 
-export default function Home() {
-  const { data: session } = useSession();
-  const router = useRouter();
+export default function Homepage() {
+    const { data: session } = useSession();
+        const router = useRouter();
 
-  const BarangayClearance= () => {
-    // Navigate to another page
-    router.push('/certificates/clearance');
-  }
-
+        const BarangayClearance= () => {
+          // Navigate to another page
+          router.push('/certificates/clearance');
+        }
   return (
-    <div className="absolute inset-0 bg-cover bg-center z-[-1]" style={{ backgroundImage: "url('./logo_nobg.png')" }}>
-    <main className="flex flex-col mt-35 pt-10 pb-10 pl-5 pr-5 items-center font-sans font-semibold mt-20 mr-[1%]">
+    
     <div>
     {session ? (
-    <div class="grid grid-cols-3 gap-10 ml-[3%] mt-20">
+    <div class="grid grid-cols-3 gap-7 ml-[3%] mt-20">
         <div
           class=" profile-card w-[300px] rounded-md shadow-xl overflow-hidden z-[100] relative cursor-pointer snap-start shrink-0 bg-white flex flex-col items-center justify-center gap-3 transition-all duration-300 group"
         >
@@ -165,7 +163,6 @@ export default function Home() {
     </div>
      ) : null }
 </div>
-    </main>
-    </div>
-  );
+  )
 }
+

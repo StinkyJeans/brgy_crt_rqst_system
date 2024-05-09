@@ -127,10 +127,12 @@ const [gender, setGender] = useState("")
 
   
   return (
-    <div className="absolute inset-0 bg-cover bg-center z-[-1]" style={{ backgroundImage: "url('./login-bg.png')" }}>
-
-    <div className="flex  ml-[50%] justify-between mt-[10%] pr-[10%] "> 
+<div className="grid grid-cols-2  ">
+  <img src="logo.png" alt="Logo" class="h-50 w-auto mt-20"></img>
+    <div className="flex justify-between mt-[10%] pr-[10%] "> 
+    <div>
     <div className="bg-white/[.8] p-6 rounded shadow-md w-[100%] mr-[25%]"> 
+      <div>
       <h1 className="text-2xl text-center font-semibold mb-6 text-black">Register</h1> 
       <p className="text-red-600 text-[14px] mb-2">{error && error}</p> 
       <form onSubmit={handleSubmit} className="grid grid-cols-3 gap-4">
@@ -138,7 +140,7 @@ const [gender, setGender] = useState("")
         <p className="text-base/8 text-black">First Name:</p>
           <input 
             type="text"
-            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black"
+            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black text-base/8"
             name="firstName"
             value={firstName}
             onChange={onChange}
@@ -149,7 +151,7 @@ const [gender, setGender] = useState("")
           <p className="text-base/8 text-black">Middle Name:</p>
           <input 
             type="text"
-            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black"
+            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black text-base/8"
             name="middleName"
             value={middleName}
             onChange={onChange}
@@ -160,7 +162,7 @@ const [gender, setGender] = useState("")
         <p className="text-base/8 text-black">Last Name:</p>
           <input 
             type="text"
-            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black"
+            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black text-base/8"
             name="lastName"
             value={lastName}
             onChange={onChange}
@@ -171,7 +173,7 @@ const [gender, setGender] = useState("")
         <p className="text-base/8 text-black">Email:</p>
           <input 
             type="text"
-            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black"
+            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black text-base/8"
             name="email"
             value={email}
             onChange={onChange}
@@ -182,7 +184,7 @@ const [gender, setGender] = useState("")
         <p className="text-base/8 text-black">Password:</p>
           <input 
             type="password"
-            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black"
+            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black text-base/8"
             name="password"
             value={password}
             onChange={onChange}
@@ -193,14 +195,14 @@ const [gender, setGender] = useState("")
         <p className="text-base/8 text-black">Birth Date:</p>
           <input 
             type="date"
-            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black"
+            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black text-base/8"
             name="birthDate"
             value={birthDate}
             onChange={onChange}
             required
           />
         </div>
-        <div className="col-span-3 text-black">
+        <div className="col-span-3 text-black text-base">
           <label className='text-base/8' htmlFor="gender">Gender:</label>
           <select
             className="w-50 border border-gray-300 text-black rounded  mb-4 focus:outline-none focus:border-blue-400 focus:text-black"
@@ -214,7 +216,7 @@ const [gender, setGender] = useState("")
             <option value="female">Female</option>
           </select>
         </div>
-        <div className="col-span-3 text-black ">
+        <div className="col-span-3 text-black text-base/8">
         <p className="text-base/10 text-black">Please Upload ID:</p>
           <input
             type="file"
@@ -232,9 +234,10 @@ const [gender, setGender] = useState("")
         Login with an existing account
       </Link>
     </div>
+    </div>
   </div>
   </div>
-
+  </div>
   
   )
 }

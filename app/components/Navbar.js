@@ -9,7 +9,7 @@ const Navbar = () => {
     
     console.log(session);
     return (
-        <div>
+        <div w>
             <ul className="flex justify-between m-10 items-center">
                 <div className="flex items-center">
                     <img src="/logo.png" alt="Logo" className="h-20 w-auto" />
@@ -18,6 +18,9 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="flex gap-5 text-base/10">
+                <Link href="/contactUs">
+                        <li className="ml-2 ">Contact Us</li>
+                    </Link>  
 
                     {!session ? (
                         <>
@@ -40,9 +43,8 @@ const Navbar = () => {
                             <li>
                                 <button
                                     onClick={() => {
-                                        signOut();
+                                        signOut({callbackUrl:"/login"});
                                     }}
-                                    href="/login"
                                     className=" px-5 -mt-1 bg-blue-800 rounded-full hover:bg-sky-700 text-base/8"
                                 >
                                     Logout

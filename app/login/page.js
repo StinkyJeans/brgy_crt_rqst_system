@@ -49,9 +49,10 @@ const Login = () => {
    
   };
   return (
-    <div className="absolute inset-0 bg-cover bg-center z-[-1]" style={{ backgroundImage: "url('./login-bg.png')" }}>
-
-    <div className="flex flex-col ml-[54%] justify-between pt-20 mt-[7%]">
+    <div className="grid grid-cols-2  ">
+    
+    <img src="logo.png" alt="Logo" class="h-50 w-auto mt-20"></img>
+    <div className="flex flex-col ml-10 justify-between pt-20 mt-[7%]">
         <div className="bg-white/[.8] p-8 rounded shadow-md w-96 relative z-10">
           <h1 className="text-3xl text-black text-center font-semibold mb-8">Login</h1>
           <p className="text-red-600 text-[16px] mb-4">{error && error}</p>
