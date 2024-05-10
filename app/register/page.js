@@ -129,7 +129,7 @@ const [gender, setGender] = useState("")
   return (
   <div className="grid grid-cols-2  ">
   <img src="logo.png" alt="Logo" class="h-50 w-auto mt-20"></img>
-    <div className="flex justify-between mt-[10%] pr-[10%] "> 
+    <div className="flex justify-between  pr-[10%] "> 
     <div>
     <div className="bg-white/[.8] p-6 rounded shadow-md min-w-[600px] min-h-[500px] mr-[25%]"> 
       
@@ -152,7 +152,7 @@ const [gender, setGender] = useState("")
             name="middleName"
             value={middleName}
             onChange={onChange}
-            required
+           
             />
             </div>
             <div>
@@ -206,9 +206,10 @@ const [gender, setGender] = useState("")
           </select>
           </div>
            {/* File picker */}
-             {/* <FilePicker onChange={handleFileChange} /> */}
+             <FilePicker onChange={handleFileChange} />
   
             {/* Button and link */}
+
             <button type="submit" className="min-w-[100px] min-h-[70px] bg-blue-500 text-white rounded hover:bg-blue-600 mt-[100%]">
               Register
             </button>

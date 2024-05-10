@@ -5,6 +5,7 @@ import {signIn, useSession} from "next-auth/react";
 import { useRouter } from 'next/navigation';
 
 
+
 const Login = () => {
   const router = useRouter();
   const [error, setError] = useState("");
@@ -15,11 +16,11 @@ const Login = () => {
       router.replace("/");
     }
   }, [session, router])
-  
+
   const isValidEmail = (email) => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     return emailRegex.test(email);
-    
+
   };
   const handleSubmit = async (e) => {
     setError("");
@@ -41,12 +42,12 @@ const Login = () => {
 
     if(res?.error){
       setError("Invalid email or password");
-      if(res?.url) router.replace("/");
+      if(res?.url) router.replace("/dashboard");
     } else {
       setError("");
     }
 
-   
+
   };
   return (
     <div className="grid grid-cols-2  ">

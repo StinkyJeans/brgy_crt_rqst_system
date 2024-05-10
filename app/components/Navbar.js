@@ -9,7 +9,7 @@ const Navbar = () => {
     
     console.log(session);
     return (
-        <div>
+        <div className='sticky top-0'>
             <ul className="flex justify-between m-10 items-center">
                 <div className="flex items-center">
                     <img src="/logo.png" alt="Logo" className="h-20 w-auto" />

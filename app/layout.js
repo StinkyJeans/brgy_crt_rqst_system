@@ -23,14 +23,15 @@ export default async function RootLayout({ children }) {
         {/* <div className="absolute inset-0 bg-cover bg-center z-[-1]" style={{ backgroundImage: "url('./login-bg.png')" }}> */}
           <SessionProvider session={session}>
             <EdgeStoreProvider>
-            <div className="absolute inset-0 bg-cover bg-center z-[-1]" style={{ backgroundImage: "url('./logo_nobg.png')" }}>
+            
               <div className="mx-auto max-w-5xl text-2xl">
               <Navbar />
+              <div className="w-full h-auto p-10  ">
                 {children}
-         
+              </div>
               </div>
               <Footer />
-            </div>
+            
             </EdgeStoreProvider>
           </SessionProvider>
         {/* </div> */}

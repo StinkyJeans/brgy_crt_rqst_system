@@ -39,7 +39,7 @@ export default function Home() {
     <main className="flex flex-col mt-35 pt-10 pb-10 pl-5 pr-5 items-center font-sans font-semibold mr-[1%]">
     <div>
     {session ? (
-    <div class="grid grid-cols-3 gap-10 ] ">
+    <div class="grid grid-cols-3 gap-20 mb-10 ] ">
         <div
           class=" profile-card w-[300px] rounded-md shadow-xl overflow-hidden z-[100] relative cursor-pointer snap-start shrink-0 bg-white flex flex-col items-center justify-center gap-3 transition-all duration-300 group"
         >
@@ -101,7 +101,7 @@ export default function Home() {
            </div>
          </div>
          <div class="headings *:text-center *:leading-4 mb-5">
-          <p class="text-xl font-serif font-semibold text-[#434955]">Barangay Recidency</p>
+          <p class="text-xl font-serif font-semibold text-[#434955]">Barangay Residency</p>
 
          </div>
          <div class="  text-gray-400 text-base text-center font-medium px-10">
