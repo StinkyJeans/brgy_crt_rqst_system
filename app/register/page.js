@@ -127,85 +127,74 @@ const [gender, setGender] = useState("")
 
   
   return (
-<div className="grid grid-cols-2  ">
+  <div className="grid grid-cols-2  ">
   <img src="logo.png" alt="Logo" class="h-50 w-auto mt-20"></img>
     <div className="flex justify-between mt-[10%] pr-[10%] "> 
     <div>
-    <div className="bg-white/[.8] p-6 rounded shadow-md w-[100%] mr-[25%]"> 
-      <div>
-      <h1 className="text-2xl text-center font-semibold mb-6 text-black">Register</h1> 
-      <p className="text-red-600 text-[14px] mb-2">{error && error}</p> 
-      <form onSubmit={handleSubmit} className="grid grid-cols-3 gap-4">
-        <div>
-        <p className="text-base/8 text-black">First Name:</p>
-          <input 
-            type="text"
-            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black text-base/8"
+    <div className="bg-white/[.8] p-6 rounded shadow-md min-w-[600px] min-h-[500px] mr-[25%]"> 
+      
+        <h1 className="text-3xl text-center font-semibold font-md mb-8 text-black">Register</h1>
+          <p className="text-red-600 text-[16px] mb-4">{error && error}</p>
+          <form onSubmit={handleSubmit}>
+          <div className="grid grid-cols-3 gap-2">
+            <div>
+            <label className="text-black">First Name:</label><input type="text"  
+            className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black" 
             name="firstName"
             value={firstName}
             onChange={onChange}
             required
-          />
-        </div>
-        <div>
-          <p className="text-base/8 text-black">Middle Name:</p>
-          <input 
-            type="text"
-            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black text-base/8"
+            />
+          </div>  
+          <div>
+            <label className="text-black">Middle Name:</label><input type="text" 
+            className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black" 
             name="middleName"
             value={middleName}
             onChange={onChange}
             required
-          />
-        </div>
-        <div>
-        <p className="text-base/8 text-black">Last Name:</p>
-          <input 
-            type="text"
-            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black text-base/8"
+            />
+            </div>
+            <div>
+            <label className="text-black">Last Name:</label><input type="text"  
+            className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black" 
             name="lastName"
             value={lastName}
             onChange={onChange}
             required
-          />
-        </div>
-        <div>
-        <p className="text-base/8 text-black">Email:</p>
-          <input 
-            type="text"
-            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black text-base/8"
+            />
+            </div>
+            <div>
+            <label className="text-black">Email:</label><input type="text"   
+            className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black" 
             name="email"
             value={email}
             onChange={onChange}
             required
-          />
-        </div>
-        <div>
-        <p className="text-base/8 text-black">Password:</p>
-          <input 
-            type="password"
-            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black text-base/8"
+            />
+            </div>
+            <div>
+            <label className="text-black">Password:</label><input type="password"  
+            className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black" 
             name="password"
             value={password}
             onChange={onChange}
             required
-          />
-        </div>
-        <div>
-        <p className="text-base/8 text-black">Birth Date:</p>
-          <input 
-            type="date"
-            className="w-full border border-gray-300 text-black rounded focus:outline-none focus:border-blue-400 focus:text-black text-base/8"
+            />
+            </div>
+            <div>
+            <label className="text-black">Birth Date:</label><input type="date"   
+            className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black" 
             name="birthDate"
             value={birthDate}
             onChange={onChange}
             required
-          />
-        </div>
-        <div className="col-span-3 text-black text-base">
-          <label className='text-base/8' htmlFor="gender">Gender:</label>
+            />
+            </div>
+            <div>
+          <label className='text-black' htmlFor="gender">Gender:</label>
           <select
-            className="w-50 border border-gray-300 text-black rounded  mb-4 focus:outline-none focus:border-blue-400 focus:text-black"
+            className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black"
             name="gender"
             value={gender}
             onChange={onChange}
@@ -215,29 +204,26 @@ const [gender, setGender] = useState("")
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
+          </div>
+           {/* File picker */}
+             {/* <FilePicker onChange={handleFileChange} /> */}
+  
+            {/* Button and link */}
+            <button type="submit" className="min-w-[100px] min-h-[70px] bg-blue-500 text-white rounded hover:bg-blue-600 mt-[100%]">
+              Register
+            </button>
+            </div>
+          </form>
+          <div className="text-center text-gray-500 mt-4">- OR -</div>
+          <Link className="block text-center text-blue-500 hover:underline mt-2" href="/login">
+          Login with an existing account
+          </Link>
         </div>
-        <div className="col-span-3 text-black text-base/8">
-        <p className="text-base/10 text-black">Please Upload ID:</p>
-          <input
-            type="file"
-            onChange={(e) => {
-              setFile(e.target.files?.[0]);
-            }}
-          />
-        </div>
-        <button type="submit" className="col-span-3 w-full bg-blue-500 text-white py-1 rounded hover:bg-blue-600"> 
-          Register
-        </button>
-      </form>
-      <div className="text-center text-gray-500 mt-2">- OR -</div>
-      <Link className="block text-center text-blue-500 hover:underline mt-1" href="/login"> 
-        Login with an existing account
-      </Link>
-    </div>
-    </div>
+      </div>
   </div>
   </div>
-  </div>
+  
+
   
   )
 }
