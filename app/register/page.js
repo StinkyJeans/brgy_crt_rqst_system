@@ -128,10 +128,10 @@ const [gender, setGender] = useState("")
   
   return (
   <div className="grid grid-cols-2  ">
-  <img src="logo.png" alt="Logo" class="h-50 w-auto mt-20"></img>
-    <div className="flex justify-between  pr-[10%] "> 
+  <img src="logo.png" alt="Logo" class="h-50 w-auto "></img>
+    <div className="flex justify-between  "> 
     <div>
-    <div className="bg-white/[.8] p-6 rounded shadow-md min-w-[600px] min-h-[500px] mr-[25%]"> 
+    <div className="bg-white/[.8] p-6 rounded shadow-md min-w-[600px] min-h-[500px]"> 
       
         <h1 className="text-3xl text-center font-semibold font-md mb-8 text-black">Register</h1>
           <p className="text-red-600 text-[16px] mb-4">{error && error}</p>
@@ -194,7 +194,7 @@ const [gender, setGender] = useState("")
             <div>
           <label className='text-black' htmlFor="gender">Gender:</label>
           <select
-            className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black"
+            className="w-full border border-gray-300 text-black rounded px-3  focus:outline-none focus:border-blue-400 focus:text-black"
             name="gender"
             value={gender}
             onChange={onChange}
@@ -205,12 +205,14 @@ const [gender, setGender] = useState("")
             <option value="female">Female</option>
           </select>
           </div>
-           {/* File picker */}
+       
              <FilePicker onChange={handleFileChange} />
   
             {/* Button and link */}
 
-            <button type="submit" className="min-w-[100px] min-h-[70px] bg-blue-500 text-white rounded hover:bg-blue-600 mt-[100%]">
+            </div >
+            <div className="">
+            <button type="submit" className="min-w-[100px] min-h-[70px] bg-blue-500 px-10 text-white rounded hover:bg-blue-600 mt-[7%] ml-[34%]">
               Register
             </button>
             </div>
