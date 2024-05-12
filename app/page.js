@@ -105,7 +105,7 @@ export default function Home() {
 
          </div>
          <div class="  text-gray-400 text-base text-center font-medium px-10">
-           View Barangay Recidency <br></br> and have a chance to inquire online
+           View Barangay Residency <br></br> and have a chance to inquire online
          </div>
          
          <button  onClick={BarangayRecidency} className="w-[50%] bg-blue-500 text-white py-2 text-base/8 font-bold font-mono hover:bg-blue-600 mb-10">PROCEED</button>
