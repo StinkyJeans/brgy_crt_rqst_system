@@ -10,6 +10,10 @@ const Login = () => {
   const router = useRouter();
   const [error, setError] = useState("");
   const session = useSession();
+  const [loading, setLoading] = useState(false);
+
+  
+  
 
   useEffect(() => {
     if(session?.status === "authenticated"){
@@ -25,6 +29,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     setError("");
     e.preventDefault();
+    setLoading(true);
     const email = e.target[0].value;
     const password = e.target[1].value;
 
@@ -67,9 +72,27 @@ const Login = () => {
             required
             />
            
-            <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
-              Signin
-            </button>
+           <button
+  type="submit"
+  className={`relative w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 ${loading ? 'cursor-not-allowed' : ''}`}
+  disabled={loading} // Disable button when loading
+  style={{ padding: '0.75rem' }} // Add padding to the button
+>
+  {/* Conditional rendering of text or spinner */}
+  {loading ? (
+    <div className="flex items-center justify-center">
+      <span className="mr-2">Signing in</span>
+      <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A8.001 8.001 0 0112 4.472v3.997c-1.302 0-2.525.314-3.608.854L6 11.291zM12 20v-4a8.003 8.003 0 01-4-6.928L4.728 13.9A9.967 9.967 0 002 12c0 5.523 4.477 10 10 10z"></path>
+      </svg>
+    </div>
+  ) : (
+    "Signin"
+  )}
+</button>
+
+
           </form>
           <div className="text-center text-gray-500 mt-4">- OR -</div>
           <Link className="block text-center text-blue-500 hover:underline mt-2" href="/register">

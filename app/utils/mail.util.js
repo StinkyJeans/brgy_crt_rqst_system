@@ -16,18 +16,33 @@ let transporter = nodemailer.createTransport({
     secure: true,
     auth: {
       type: "OAuth2",
-      user: "noreplybarangayrizal@gmail.com",
-      accessToken: "ya29.a0AXooCgtijEDOewfCOfOWH83SQYxqgexTqS6ogpVAQdPGgoouyiNg0yAP-GElcWPS4AevYAJTuB8qT3MfyhpqLBdWg6U_vhtb_hk_LBfSGM7SfRs3Smg7omUfw9E6OOR0enh0_nWmjJIrHJ9jmEs1lRFTyrgcEG-l_scNaCgYKAV0SARASFQHGX2MiibDTULFfDgcgkrOc1oc-vg0171",
+      user: "norepbarangayrizal@gmail.com",
+      accessToken: "ya29.a0AXooCgu9rYg6d2KhWdWjEn62-BIYdrLNTrfFpX7_foklVHOab8MuX4dquNzVzVGek76azem-L4Vw6qNyn-_7d7ACpRmrqdIvWlsIXV0snzhT1MlD1hXyonwzij3MQSoS6d-jvfNJwqJVLx-S9TMHwu7MBWLdUeO4qVXyaCgYKAawSARMSFQHGX2MiXThetEWDHw9cqTZDk001fA0171",
     },
   });
 
-export const sendEmail = async () => {
+  export const sendEmail = async ({ firstName, lastName, email, phoneNumber, message }) => {
+    try {
+        const emailContent = `
+            <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone Number:</strong> ${phoneNumber}</p>
+            <p><strong>Message:</strong></p>
+            <p>${message}</p>
+        `;
 
-        return await transporter.sendMail({
-            from : 'noreplybarangayrizal@gmail.com',
-            to: 'johncona3@gmail.com',
-            subject : 'CONTACT',
-            html: "<b>Hello world?</b>",
-            text: "asdbashdkghjaksgas"
-        })
-}
+        const response = await transporter.sendMail({
+            from: 'norepbarangayrizal@gmail.com',
+            to: 'johncona3@gmail.com', // Change this to the recipient's email address
+            subject: 'CONTACT',
+            html: emailContent,
+            text: `Name: ${firstName} ${lastName}\nEmail: ${email}\nPhone Number: ${phoneNumber}\nMessage:\n${message}`,
+        });
+
+        console.log('Email sent:', response);
+        return { success: true };
+    } catch (error) {
+        console.error('Error sending email:', error);
+        return { error: 'Error sending email. Please try again later.' };
+    }
+};

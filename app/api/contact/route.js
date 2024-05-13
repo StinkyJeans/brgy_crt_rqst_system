@@ -1,6 +1,12 @@
 import { sendEmail } from "@/app/utils/mail.util";
 
-export async function POST() {
+export const POST = async (request) => {
+    const {                  
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+        message} = await request.json();
     const sender ={
         name:'My App',
         address: 'no-reply@example.com'
@@ -10,7 +16,7 @@ export async function POST() {
         address: 'johncona3@gmail.com',
     }]
     try{
-        const result = await sendEmail();
+        const result = await sendEmail({ firstName, lastName, email, phoneNumber, message});
         return Response.json({
             accepted: result.accepted
         })
