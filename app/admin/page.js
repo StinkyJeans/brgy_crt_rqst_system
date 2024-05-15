@@ -55,6 +55,7 @@ function Page() {
           <li onClick={(e) => toggleUsersTable(e)} className="cursor-pointer">
             Users Verification
           </li>
+          <p>___________________</p>
           <li onClick={(e) => toggleCertificateTable(e)} className="cursor-pointer">
             Certificate Requests
           </li>
@@ -89,6 +90,7 @@ function Page() {
                 </tbody>
               </table>
             </div>
+         
           )}
           {showCertificateTable && (
             <div>
