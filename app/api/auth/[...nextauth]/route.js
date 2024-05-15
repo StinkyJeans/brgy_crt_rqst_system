@@ -5,14 +5,8 @@ import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 
-
-
-
-
 export const authOptions = {
- 
   providers: [
-    
     CredentialsProvider({
       id: "credentials",
       name: "credentials",
@@ -23,13 +17,6 @@ export const authOptions = {
       async authorize(credentials) {
         try {
           await connect(); 
-          // Check if the provided credentials match the admin account
-          if (credentials.email === 'admin@gmail.com' && credentials.password === 'admin') {
-            // Redirect admin user to the admin page
-            return { email: 'admin@gmail.com', isAdmin: true}; // Marking as admin
-            
-          }
-
           // If not admin, proceed with regular user authentication
           const user = await User.findOne({ email: credentials.email });
           if (user) {
@@ -49,11 +36,21 @@ export const authOptions = {
       clientId: process.env.GITHUB_ID ?? "",
       clientSecret: process.env.GITHUB_SECRET ?? "",
     }),
-
   ],
+  callbacks: {
+    async jwt({token, user}) {
+      if (user) {
+        token.role = user.role;
+      }
+      return token;
+    },
+    async session({session, token}) {
+      session.user.role = token.role;
+      return session;
+    }
+  },
 };
 
 export default NextAuth(authOptions);
-
 export const handler = NextAuth(authOptions);
 export {handler as GET, handler as POST};

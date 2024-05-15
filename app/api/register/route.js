@@ -24,7 +24,8 @@ export const POST = async (request) => {
     password: hashedPassword,
     birthDate, 
     gender,
-    image
+    image,
+    role: "user"
   });
 
   try {

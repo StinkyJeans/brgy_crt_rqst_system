@@ -16,9 +16,9 @@ console.log("Status:", status);
     console.log("Session:", session);
     console.log("Status:", status);
 
-    if (status === "authenticated" && session?.user?.isAdmin) {
+    if (status === "authenticated" && session?.user?.role == 'admin') {
       console.log("User is authenticated and is an admin. Redirecting to /admin");
-      router.push("./admin/homepage");
+      router.push("/admin");
     } else if (status === "authenticated") {
       console.log("User is authenticated but is not an admin. Redirecting to /");
       router.replace("/");
@@ -57,7 +57,7 @@ console.log("Status:", status);
   };
 
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-2 mt-20">
       <img src="logo.png" alt="Logo" className="h-50 w-auto mt-15" />
       <div className="flex flex-col ml-10 justify-between">
         <div className="bg-white/[.8] p-8 rounded shadow-md w-96 relative z-10">

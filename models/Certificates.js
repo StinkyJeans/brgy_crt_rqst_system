@@ -4,6 +4,10 @@ const { Schema } = mongoose;
 
 const certificatesSchema = new Schema(
   {
+    firstName: {
+      type: String,
+      required: true,
+    },
     purpose: {
       type: String,
       required: true,

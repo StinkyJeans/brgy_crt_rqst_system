@@ -9,34 +9,34 @@ const Navbar = () => {
     
     console.log(session);
     return (
-        <div className=' relative sticky top-0 z-50'>
-            <ul className="flex justify-between m-10 items-center">
+        <div className=' bg-white bg-opacity-50 backdrop-filter backdrop-blur-md text-white text-center sticky z-[50]  top-0 w-full '>
+            <ul className="flex justify-between  items-center ml-[500px] mr-[500px]">
                 <div className="flex items-center">
                     <img src="/logo.png" alt="Logo" className="h-20 w-auto" />
                     <Link href="/">
-                        <li className="ml-2 text-base">Home</li>
+                        <li className="ml-2 text-base text-black">Home</li>
                     </Link>
                 </div>
                 <div className="flex gap-5 text-base/10">
                 {session ? (
                 <Link href="/contactus">
-                        <li className="ml-2 ">Contact Us</li>
+                        <li className="ml-2 text-black ">Contact Us</li>
                     </Link>  
                 ) : null }
                     {!session ? (
                         <>
                             <Link href="/login">
-                                <li>Login</li>
+                                <li className="text-black">Login</li>
                             </Link>
 
                             <Link href="/register">
-                                <li>Signup</li>
+                                <li className='text-black'>Signup</li>
                             </Link>
                         </>
                     ) : (
                         <> 
                           
-                          <Link href="/userInfo">
+                          <Link className="text-black" href="/userInfo">
                           {session.user?.email}
                           </Link>
 
@@ -46,7 +46,7 @@ const Navbar = () => {
                                     onClick={() => {
                                         signOut({callbackUrl:"/login"});
                                     }}
-                                    className=" px-5 -mt-1 bg-blue-800 rounded-full hover:bg-sky-700 text-base/8"
+                                    className=" px-5 -mt-1 bg-blue-800 rounded-full hover:bg-sky-700 text-base/8 text-black"
                                 >
                                     Logout
                                 </button>

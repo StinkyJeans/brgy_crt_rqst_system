@@ -9,11 +9,12 @@ await connect();
 // Define the POST request handler
 export const POST = async (request) => {
   // Extract purpose and documentTitle from the request body
-  const { purpose, documentTitle } = await request.json();
+  const { firstName, purpose, documentTitle } = await request.json();
 
   try {
     // Create a new instance of the Certificates model
     const newCertificate = new Certificates({
+      firstName,
       purpose,
       documentTitle
     });

@@ -110,7 +110,7 @@ const Register = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 mb-20">
+    <div className="grid grid-cols-2 mb-20 mt-10">
       <img src="logo.png" alt="Logo" className="h-50 w-auto" />
       <div className="flex justify-between">
         <div>
