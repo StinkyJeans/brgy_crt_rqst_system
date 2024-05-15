@@ -2,8 +2,9 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 
-import {  DocumentTextIcon} from '@heroicons/react/solid';
+
 
 export default function Home() {
   const { data: session } = useSession();
@@ -36,7 +37,7 @@ export default function Home() {
 
   return (
   
-    <main className="flex flex-col mt-35 pt-10 pb-10 pl-5 pr-5 items-center font-sans font-semibold mr-[1%]">
+    <main className="flex flex-col mt-35 pt-10 mr-[5%] items-center font-sans font-semibold  sticky ">
     <div>
     {session ? (
     <div class="grid grid-cols-3 gap-20 mb-10 ] ">
@@ -49,7 +50,13 @@ export default function Home() {
            <div
              class="img_container w-full flex items-center justify-center relative z-40 "
            >
-              <DocumentTextIcon className="h-10 w-10 text-gray-500" />
+      <Image
+        className='mb-5'
+        src="/half indigency.jpg" // Replace this with your image source
+        alt="My Image"
+        width={500} // Set width of the image
+        height={300} // Set height of the image
+      />
 
            </div>
          </div>
@@ -73,7 +80,13 @@ export default function Home() {
            <div
              class="img_container w-full flex items-center justify-center relative z-40 "
            >
-              <DocumentTextIcon className="h-10 w-10 text-gray-500" />
+                  <Image
+        className='mb-5'
+        src="/half indigency.jpg" // Replace this with your image source
+        alt="My Image"
+        width={500} // Set width of the image
+        height={300} // Set height of the image
+      />
 
            </div>
          </div>
@@ -96,7 +109,13 @@ export default function Home() {
            <div
              class="img_container w-full flex items-center justify-center relative z-40 "
            >
-              <DocumentTextIcon className="h-10 w-10 text-gray-500" />
+        <Image
+        className='mb-1'
+        src="/half residency.jpg" // Replace this with your image source
+        alt="My Image"
+        width={500} // Set width of the image
+        height={300} // Set height of the image
+      />
 
            </div>
          </div>
@@ -119,7 +138,13 @@ export default function Home() {
            <div
              class="img_container w-full flex items-center justify-center relative z-40 "
            >
-              <DocumentTextIcon className="h-10 w-10 text-gray-500" />
+                   <Image
+          
+        src="/half Permit.jpg" // Replace this with your image source
+        alt="My Image"
+        width={500} // Set width of the image
+        height={300} // Set height of the image
+      />
 
            </div>
          </div>
@@ -142,7 +167,13 @@ export default function Home() {
            <div
              class="img_container w-full flex items-center justify-center relative z-40 "
            >
-              <DocumentTextIcon className="h-10 w-10 text-gray-500" />
+                             <Image
+        className='mb-1'
+        src="/half blotter.jpg" // Replace this with your image source
+        alt="My Image"
+        width={500} // Set width of the image
+        height={300} // Set height of the image
+      />
 
            </div>
          </div>
@@ -165,7 +196,13 @@ export default function Home() {
            <div
              class="img_container w-full flex items-center justify-center relative z-40 "
            >
-              <DocumentTextIcon className="h-10 w-10 text-gray-500" />
+                                          <Image
+        className='mb-7 '
+        src="/half cedula.jpg" // Replace this with your image source
+        alt="My Image"
+        width={500} // Set width of the image
+        height={300} // Set height of the image
+      />
 
            </div>
          </div>

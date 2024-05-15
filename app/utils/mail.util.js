@@ -1,15 +1,5 @@
 import nodemailer from 'nodemailer';
 
-
-// const transport = nodemailer.createTransport({
-//     host: process.env.MAIL_HOST,
-//     port: process.env.MAIL_PORT,
-//     secure: process.env.NODE_ENV !== 'development',
-//     auth: {
-//         user:process.env.MAIL_USER,
-//         pass:process.env.MAIL_PASSWORD
-//     }
-// })
 let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -17,7 +7,7 @@ let transporter = nodemailer.createTransport({
     auth: {
       type: "OAuth2",
       user: "norepbarangayrizal@gmail.com",
-      accessToken: "ya29.a0AXooCgu9rYg6d2KhWdWjEn62-BIYdrLNTrfFpX7_foklVHOab8MuX4dquNzVzVGek76azem-L4Vw6qNyn-_7d7ACpRmrqdIvWlsIXV0snzhT1MlD1hXyonwzij3MQSoS6d-jvfNJwqJVLx-S9TMHwu7MBWLdUeO4qVXyaCgYKAawSARMSFQHGX2MiXThetEWDHw9cqTZDk001fA0171",
+      accessToken: "ya29.a0AXooCgu8-VKZ1xGAfwJpl7X0R19Y5FEkLIEzZ7QySqWdSUHM34J2IlbYIjKSQovRkryW8xNvQE4qseoi7Ds9jZD6R_RymhjuYtuWgBf9b3ETTmfh8ULDEDtCyEfJyMstAm1N1Clm_Aj-pRisyzwUcl4qHNGYxPFTUmezaCgYKAf0SARMSFQHGX2MiShfTjf0-RDzJvNN8UNBB_A0171",
     },
   });
 
@@ -33,7 +23,7 @@ let transporter = nodemailer.createTransport({
 
         const response = await transporter.sendMail({
             from: 'norepbarangayrizal@gmail.com',
-            to: 'johncona3@gmail.com', // Change this to the recipient's email address
+            to: 'johncona3@gmail.com', 
             subject: 'CONTACT',
             html: emailContent,
             text: `Name: ${firstName} ${lastName}\nEmail: ${email}\nPhone Number: ${phoneNumber}\nMessage:\n${message}`,
