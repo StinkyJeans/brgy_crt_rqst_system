@@ -1,124 +1,121 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/react'; // Importing useSession from next-auth/react
-import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
-function Page() {
-  const { data: session, status: sessionStatus } = useSession(); // Destructuring session and sessionStatus from useSession
-
-  // Define loading state based on sessionStatus
+export default function Example() {
+  const { data: session, status: sessionStatus } = useSession();
   const loading = sessionStatus === 'loading';
-
-  const [showUsersTable, setShowUsersTable] = useState(false);
-  const [showCertificateTable, setShowCertificateTable] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    // Check if the user is an admin when the session is loaded
     if (!loading && session) {
       const isAdmin = session.user.role === 'admin';
       setIsAdmin(isAdmin);
     }
   }, [loading, session]);
 
-  const toggleUsersTable = (event) => {
-    event.stopPropagation();
-    setShowUsersTable(prevState => !prevState);
-    setShowCertificateTable(false); // Hide certificate table when showing user verification table
-  };
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch('/api/users');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json(); // Parse JSON here
+        setUsers(data);
+      } catch (error) {
+        console.error('Failed to fetch users:', error);
+      }
+    };
 
-  const toggleCertificateTable = (event) => {
-    event.stopPropagation();
-    setShowCertificateTable(prevState => !prevState);
-    setShowUsersTable(false); // Hide user verification table when showing certificate table
-  };
+    fetchUsers();
+  }, []);
 
-  // If the session is still loading, return a loading indicator
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // If the user is not logged in, return a message or redirect to login page
   if (!session) {
     return <div>Please log in to access this page</div>;
   }
 
-  // If the user is not an admin, return null to hide the page content
   if (!isAdmin) {
-    return null;
+    return <div>You do not have permission to view this page</div>;
   }
 
   return (
-    <div className="flex bg-white/8">
-      <div className="w-1/4 p-4">
-        <ul>
-          <li onClick={(e) => toggleUsersTable(e)} className="cursor-pointer">
-            Users Verification
-          </li>
-          <p>___________________</p>
-          <li onClick={(e) => toggleCertificateTable(e)} className="cursor-pointer">
-            Certificate Requests
-          </li>
-        </ul>
-      </div>
-      <div className="w-3/4 p-4">
-        <div>
-          {showUsersTable && (
-            <div>
-              <h2 className="text-2xl font-bold mb-4">User Verification Table</h2>
-              <table className="table-auto border-collapse border border-gray-800">
-                <thead>
-                  <tr>
-                    <th className="border border-gray-800 px-4 py-2">First Name</th>
-                    <th className="border border-gray-800 px-4 py-2">Middle Name</th>
-                    <th className="border border-gray-800 px-4 py-2">Last Name</th>
-                    <th className="border border-gray-800 px-4 py-2">Email</th>
-                    <th className="border border-gray-800 px-4 py-2">Birth Date</th>
-                    <th className="border border-gray-800 px-4 py-2">Gender</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="border border-gray-800 px-4 py-2">John</td>
-                    <td className="border border-gray-800 px-4 py-2">Mirk</td>
-                    <td className="border border-gray-800 px-4 py-2">Doe</td>
-                    <td className="border border-gray-800 px-4 py-2">john@example.com</td>
-                    <td className="border border-gray-800 px-4 py-2">2002-05-12</td>
-                    <td className="border border-gray-800 px-4 py-2">Male</td>
-                  </tr>
-                  {/* Add other table rows for user verification */}
-                </tbody>
-              </table>
+    <div className="bg-white rounded">
+      <div className="mx-auto max-w-7xl">
+        <div className="bg-white py-10 rounded">
+          <div className="px-4 sm:px-6 lg:px-8">
+            <div className="sm:flex sm:items-center">
+              <div className="sm:flex-auto">
+                <h1 className="text-base font-semibold leading-6 text-black">Users</h1>
+                <p className="mt-2 text-sm text-gray-900">
+                  A list of all the users in your account including their First Name, Middle Name, Last Name, Email, Birth Date, Gender, and Role.
+                </p>
+              </div>
             </div>
-         
-          )}
-          {showCertificateTable && (
-            <div>
-              <h2 className="text-2xl font-bold mb-4">Certificate Requests Table</h2>
-              <table className="table-auto border-collapse border border-gray-800">
-                <thead>
-                  <tr>
-                    <th className="border border-gray-800 px-4 py-2">First Name</th>
-                    <th className="border border-gray-800 px-4 py-2">Purpose</th>
-                    <th className="border border-gray-800 px-4 py-2">Document Title</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* Add table rows for certificate requests */}
-                  <tr>
-                    <td className="border border-gray-800 px-4 py-2">John</td>
-                    <td className="border border-gray-800 px-4 py-2">Achievement</td>
-                    <td className="border border-gray-800 px-4 py-2">Certificate of Completion</td>
-                  </tr>
-                  {/* Add other certificate request rows */}
-                </tbody>
-              </table>
+            <div className="mt-8 flow-root">
+              <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                  <table className="min-w-full divide-y divide-gray-700">
+                    <thead>
+                      <tr>
+                        <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-black sm:pl-0">
+                          First Name
+                        </th>
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                          Middle Name
+                        </th>
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                          Last Name
+                        </th>
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                          Email
+                        </th>
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                          Birth Date
+                        </th>
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                          Gender
+                        </th>
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                          Role
+                        </th>
+                        <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                          <span className="sr-only">Edit</span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-800">
+                      {users.map((user) => (
+                        <tr key={user._id}>
+                          <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                            {user.firstName}
+                          </td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.middleName}</td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.lastName}</td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.email}</td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{new Date(user.birthDate).toLocaleDateString()}</td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.gender}</td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.role}</td>
+                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                            <a href="#" className="text-indigo-600 hover:text-indigo-500">
+                              Verify<span className="sr-only">, {user.firstName}</span>
+                            </a>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-export default Page;
