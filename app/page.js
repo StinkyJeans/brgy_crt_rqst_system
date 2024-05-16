@@ -65,7 +65,8 @@ export default function Home() {
 
          </div>
          <div class="  text-gray-400 text-base text-center font-medium px-10">
-           View Barangay Clearance <br></br> and have a chance to inquire online
+         Official certification confirming residency and clearing outstanding obligations, crucial for various transactions in the Philippines.
+
          </div>
 
         <button  onClick={BarangayClearance} className="w-[50%] bg-blue-500 text-white py-2 text-base/8 font-bold font-mono hover:bg-blue-600 mb-10">PROCEED</button>
@@ -94,8 +95,8 @@ export default function Home() {
           <p class="text-xl font-serif font-semibold text-[#434955]">Barangay Indigency</p>
 
          </div>
-         <div class="  text-gray-400 text-base text-center font-medium px-10">
-           View Barangay Indigency<br></br> and have a chance to inquire online
+         <div class="  text-gray-400 text-base text-center font-medium px-10 mb-10">
+         Certificate for individuals in financial need, providing access to government assistance.
          </div>
          
          <button  onClick={BarangayIndigency} className="w-[50%] bg-blue-500 text-white py-2 text-base/8 font-bold font-mono hover:bg-blue-600 mb-10">PROCEED</button>
@@ -123,8 +124,8 @@ export default function Home() {
           <p class="text-xl font-serif font-semibold text-[#434955]">Barangay Residency</p>
 
          </div>
-         <div class="  text-gray-400 text-base text-center font-medium px-10">
-           View Barangay Residency <br></br> and have a chance to inquire online
+         <div class="  text-gray-400 text-base text-center font-medium px-10 mb-10">
+         Legal status as a resident of a specific barangay, verified through documents like utility bills or affidavits.
          </div>
          
          <button  onClick={BarangayRecidency} className="w-[50%] bg-blue-500 text-white py-2 text-base/8 font-bold font-mono hover:bg-blue-600 mb-10">PROCEED</button>
@@ -152,8 +153,8 @@ export default function Home() {
           <p class="text-xl font-serif font-semibold text-[#434955]">Business Permit</p>
 
          </div>
-         <div class="  text-gray-400 text-base text-center font-medium px-10">
-           View Business Permit <br></br> and have a chance to inquire online
+         <div class="  text-gray-400 text-base text-center font-medium px-10 mb-10">
+         Authorization allowing businesses to operate within local government jurisdictions, obtained by fulfilling specific requirements and paying fees.
          </div>
          
          <button  onClick={BusinessPermit} className="w-[50%] bg-blue-500 text-white py-2 text-base/8 font-bold font-mono hover:bg-blue-600 mb-10">PROCEED</button>
@@ -181,8 +182,8 @@ export default function Home() {
           <p class="text-xl font-serif font-semibold text-[#434955]">Blotter</p>
 
          </div>
-         <div class="  text-gray-400 text-base text-center font-medium px-10">
-           View Blotter <br></br> and have a chance to inquire online
+         <div class="  text-gray-400 text-base text-center font-medium px-10 mb-10">
+         Chronological record of incidents or complaints maintained by barangay or police officials for law enforcement purposes.
          </div>
          
          <button  onClick={Blotter} className="w-[50%] bg-blue-500 text-white py-2 text-base/8 font-bold font-mono hover:bg-blue-600 mb-10">PROCEED</button>
@@ -210,8 +211,8 @@ export default function Home() {
           <p class="text-xl font-serif font-semibold text-[#434955]">Cedula</p>
 
          </div>
-         <div class="  text-gray-400 text-base text-center font-medium px-10">
-           View Cedula <br></br> and have a chance to inquire online
+         <div class="  text-gray-400 text-base text-center font-medium px-5 mb-5">
+         Mandatory community tax certificate validating payment and required for various activities such as employment or property ownership in the Philippines.
          </div>
          
          <button  onClick={Cedula} className="w-[50%] bg-blue-500 text-white py-2 text-base/8 font-bold font-mono hover:bg-blue-600 mb-10">PROCEED</button>

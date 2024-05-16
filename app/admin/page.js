@@ -102,7 +102,7 @@ export default function AdminPage() {
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
-      <div className="bg-gray-200 w-1/4 p-4 mb-[750px] rounded">
+      <div className="bg-gray-200 w-1/4 p-4 mb-[700px] rounded">
         <h2 className="text-lg font-semibold mb-4 text-black">Admin Dashboard</h2>
         <ul>
           <li className="mb-2">
@@ -149,6 +149,10 @@ export default function AdminPage() {
                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
                           Role
                         </th>
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                          User ID Image
+                        </th>
+
                         <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
                           <span className="sr-only">Edit</span>
                         </th>
@@ -166,6 +170,32 @@ export default function AdminPage() {
                           <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{new Date(user.birthDate).toLocaleDateString()}</td>
                           <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.gender}</td>
                           <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.role}</td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
+                           <div className="flex items-center justify-between">
+                             <div className="truncate max-w-[100px]">{user.image}</div>
+                              <button
+                                onClick={() => {
+                                  navigator.clipboard.writeText(user.image);
+                                  // Optionally provide feedback to the user that the URL has been copied
+                                 // For example, you could show a toast message
+                                 alert('URL copied to clipboard');
+                               }}
+                                className="ml-2 p-1 text-gray-500 hover:text-gray-700"
+                              >
+                               <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="h-4 w-4"        fill="currentColor"
+                               >
+                                  <path
+                                   fillRule="evenodd"
+                                   d="M2 2a2 2 0 012-2h5a2 2 0 012 2v2h6a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2-1a1 1 0 00-1 1v1h14V2a1 1 0 00-1-1H4zm1 4a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm12 13a1 1 0 01-1 1H4a1 1 0 01-1-1V9h16v9zM6 8a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2V10a2 2 0 00-2-2H6z"
+                                   clipRule="evenodd"
+                                 />
+                               </svg>
+                             </button>
+                           </div>
+                          </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.verified}</td>
                           <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                             {!user.verified ? (
                               <button onClick={() => handleVerify(user.email)} className="text-indigo-600 hover:text-indigo-500">
