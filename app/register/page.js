@@ -17,12 +17,8 @@ const Register = () => {
   const [birthDate, setBirthDate] = useState("");
   const [gender, setGender] = useState("");
   const [file, setFile] = useState();
+  // const [emailVerified, setEmailVerified] = useState(false); // New state variable
   const { edgestore } = useEdgeStore();
-
-  const isValidEmail = (email) => {
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    return emailRegex.test(email);
-  };
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -43,6 +39,11 @@ const Register = () => {
     } else if (name === "gender") {
       setGender(value);
     }
+  };
+
+  const isValidEmail = (email) => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailRegex.test(email);
   };
 
   const handleSubmit = async (e) => {
@@ -96,8 +97,14 @@ const Register = () => {
       if (res.status === 400) {
         setError("This email is already registered");
       } else if (res.status === 200) {
-        setError("");
-        router.push("/login");
+        // Display message to indicate user is being verified
+        setError("User is being verified. Please wait for 2-3 working days.");
+
+        // Simulate delay before redirecting to login page
+        setTimeout(() => {
+          // Redirect to login page after delay
+          router.push("/login");
+        }, 3000); // Delay for 3 seconds (adjust as needed)
       }
     } catch (error) {
       setError("Error, try again");
@@ -213,7 +220,7 @@ const Register = () => {
               </div>
               <div>
                 <FilePicker onChange={handleFileChange} />
-                </div>
+              </div>
               <div className="">
                 <button type="submit" className="min-w-[100px] min-h-[70px] bg-blue-500 px-10 text-white rounded hover:bg-blue-600 mt-[7%] ml-[34%]">
                   Register

@@ -32,6 +32,31 @@ export default function Example() {
     fetchUsers();
   }, []);
 
+  const handleVerify = async (email) => {
+    try {
+      const response = await fetch(`/api/users/verify`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }), // Include the email in the request body
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      // Update the user list after verification
+      const updatedUsers = users.map(user => {
+        if (user.email === email) {
+          return { ...user, verified: true };
+        }
+        return user;
+      });
+      setUsers(updatedUsers);
+    } catch (error) {
+      console.error('Error verifying user:', error);
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -90,24 +115,29 @@ export default function Example() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-800">
-                      {users.map((user) => (
-                        <tr key={user._id}>
-                          <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                            {user.firstName}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.middleName}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.lastName}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.email}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{new Date(user.birthDate).toLocaleDateString()}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.gender}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.role}</td>
-                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                            <a href="#" className="text-indigo-600 hover:text-indigo-500">
-                              Verify<span className="sr-only">, {user.firstName}</span>
-                            </a>
-                          </td>
-                        </tr>
-                      ))}
+                    {users.map((user) => (
+  <tr key={user._id}>
+    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+      {user.firstName}
+    </td>
+    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.middleName}</td>
+    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.lastName}</td>
+    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.email}</td>
+    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{new Date(user.birthDate).toLocaleDateString()}</td>
+    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.gender}</td>
+    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.role}</td>
+    <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+      {!user.verified ? (
+        <button onClick={() => handleVerify(user.email)} className="text-indigo-600 hover:text-indigo-500">
+          Verify
+          <span className="sr-only">, {user.firstName}</span>
+        </button>
+      ) : (
+        <span className="text-green-600">Verified</span>
+      )}
+    </td>
+  </tr>
+))}
                     </tbody>
                   </table>
                 </div>

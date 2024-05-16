@@ -17,15 +17,16 @@ export const POST = async (request) => {
 
   const hashedPassword = await bcrypt.hash(password, 5);
   const newUser = new User({
-    firstName, 
-    middleName, 
-    lastName, 
+    firstName,
+    middleName,
+    lastName,
     email,
     password: hashedPassword,
-    birthDate, 
+    birthDate,
     gender,
     image,
-    role: "user"
+    role: "user",
+    verified: false, // Set as false initially
   });
 
   try {
