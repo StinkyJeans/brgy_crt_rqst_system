@@ -69,7 +69,7 @@ export default function Page() {
           <img src="/Blotter.jpg" alt="Logo" className="h-50  w-auto mt-20"></img>
         </div>
         <div className="font-mono mt-20">
-          Lorem ipsum dolor sit amet. Et consequatur sequi ut facilis dolor ab nobis voluptatum sit quos accusamus. Ea ullam quidem eum nisi velit ut pariatur aliquid rem ipsam nesciunt est error accusamus ut quae galisum ut odio voluptatem. Sed quam voluptates aut sapiente iste est rerum laboriosam At nihil repellat aut explicabo dolor sit molestiae rerum non velit eligendi.
+        Blotter: A blotter is a written record maintained by barangay officials or police stations to document incidents or complaints reported within their jurisdiction. It serves as a chronological log of events, containing details such as the nature of the incident, the parties involved, the date and time of occurrence, and any actions taken by authorities in response to the incident.
           <form onSubmit={handleSubmit}>
             <div className="pt-10 pb-7">
               <label htmlFor="purpose" className="text-white">First Name:</label>

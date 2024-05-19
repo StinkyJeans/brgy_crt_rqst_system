@@ -69,7 +69,9 @@ export default function Page() {
           <img src="/Cedula.jpg" alt="Logo" className="h-50  w-auto mt-20"></img>
         </div>
         <div className="font-mono mt-20">
-          Lorem ipsum dolor sit amet. Et consequatur sequi ut facilis dolor ab nobis voluptatum sit quos accusamus. Ea ullam quidem eum nisi velit ut pariatur aliquid rem ipsam nesciunt est error accusamus ut quae galisum ut odio voluptatem. Sed quam voluptates aut sapiente iste est rerum laboriosam At nihil repellat aut explicabo dolor sit molestiae rerum non velit eligendi.
+        Cedula: Also known as a community tax certificate, the cedula is a mandatory document required by Philippine law for individuals engaged 
+        in various activities such as employment, business, or property ownership. It serves as proof that the holder has paid the community tax, 
+        which is levied based on their income or property holdings. 
           <form onSubmit={handleSubmit}>
             <div className="pt-10 pb-7">
               <label htmlFor="purpose" className="text-white">First Name:</label>

@@ -69,7 +69,7 @@ export default function Page() {
           <img src="/Business Permit.jpg" alt="Logo" className="h-50  w-auto mt-20"></img>
         </div>
         <div className="font-mono mt-20">
-          Lorem ipsum dolor sit amet. Et consequatur sequi ut facilis dolor ab nobis voluptatum sit quos accusamus. Ea ullam quidem eum nisi velit ut pariatur aliquid rem ipsam nesciunt est error accusamus ut quae galisum ut odio voluptatem. Sed quam voluptates aut sapiente iste est rerum laboriosam At nihil repellat aut explicabo dolor sit molestiae rerum non velit eligendi.
+        Business Permit: A business permit is an official authorization issued by the local government unit, such as the municipal or city government, allowing an individual or entity to operate a business within their jurisdiction. 
           <form onSubmit={handleSubmit}>
             <div className="pt-10 pb-7">
               <label htmlFor="purpose" className="text-white">First Name:</label>

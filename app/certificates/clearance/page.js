@@ -69,7 +69,8 @@ export default function Page() {
           <img src="/Certificate Indigency.jpg" alt="Logo" className="h-50  w-auto mt-20"></img>
         </div>
         <div className="font-mono mt-20">
-          Lorem ipsum dolor sit amet. Et consequatur sequi ut facilis dolor ab nobis voluptatum sit quos accusamus. Ea ullam quidem eum nisi velit ut pariatur aliquid rem ipsam nesciunt est error accusamus ut quae galisum ut odio voluptatem. Sed quam voluptates aut sapiente iste est rerum laboriosam At nihil repellat aut explicabo dolor sit molestiae rerum non velit eligendi.
+        Barangay Clearance: This document is an official certification issued by the barangay  confirming that the holder is a resident of that specific barangay and has no outstanding obligations such as unpaid taxes or fees. It's often required for a variety of purposes, including employment, business permits, applying for government IDs, or legal transactions.
+
           <form onSubmit={handleSubmit}>
             <div className="pt-10 pb-7">
               <label htmlFor="purpose" className="text-white">First Name:</label>

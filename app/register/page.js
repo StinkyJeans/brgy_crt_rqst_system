@@ -90,7 +90,8 @@ const Register = () => {
           password,
           birthDate,
           gender,
-          image: edge.url
+          image: edge.url,
+          verified: false
         }),
       });
 

@@ -46,7 +46,7 @@ const Navbar = () => {
                                     onClick={() => {
                                         signOut({callbackUrl:"/login"});
                                     }}
-                                    className=" px-5 -mt-1 bg-blue-800 rounded-full hover:bg-sky-700 text-base/8 text-black"
+                                    className=" px-5 -mt-1 bg-blue-800 rounded-full hover:bg-sky-700 text-base/8 text-white"
                                 >
                                     Logout
                                 </button>

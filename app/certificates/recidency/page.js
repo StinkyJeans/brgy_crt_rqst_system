@@ -69,7 +69,7 @@ export default function Page() {
           <img src="/Recidency.jpg" alt="Logo" className="h-50  w-auto mt-20"></img>
         </div>
         <div className="font-mono mt-20">
-          Lorem ipsum dolor sit amet. Et consequatur sequi ut facilis dolor ab nobis voluptatum sit quos accusamus. Ea ullam quidem eum nisi velit ut pariatur aliquid rem ipsam nesciunt est error accusamus ut quae galisum ut odio voluptatem. Sed quam voluptates aut sapiente iste est rerum laboriosam At nihil repellat aut explicabo dolor sit molestiae rerum non velit eligendi.
+        Barangay Residency: Barangay residency refers to the legal status of being a resident of a specific barangay in the Philippines. Proof of barangay residency is often required for various transactions and services within the barangay, such as obtaining barangay clearances, voting in barangay elections, or accessing barangay programs.
           <form onSubmit={handleSubmit}>
             <div className="pt-10 pb-7">
               <label htmlFor="purpose" className="text-white">First Name:</label>

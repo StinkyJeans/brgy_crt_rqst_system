@@ -9,18 +9,12 @@ const Login = () => {
   const [error, setError] = useState("");
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState(false);
-  console.log("Session:", session);
-console.log("Status:", status);
-
+  const [formSubmitted, setFormSubmitted] = useState(false); // Track if form is submitted
+  
   useEffect(() => {
-    console.log("Session:", session);
-    console.log("Status:", status);
-
-    if (status === "authenticated" && session?.user?.role == 'admin') {
-      console.log("User is authenticated and is an admin. Redirecting to /admin");
+    if (status === "authenticated" && session?.user?.role === 'admin') {
       router.push("/admin");
     } else if (status === "authenticated") {
-      console.log("User is authenticated but is not an admin. Redirecting to /");
       router.replace("/");
     }
   }, [session, status, router]);
@@ -34,6 +28,7 @@ console.log("Status:", status);
     e.preventDefault();
     setError("");
     setLoading(true);
+    setFormSubmitted(true); // Set form as submitted
 
     const email = e.target[0].value;
     const password = e.target[1].value;
@@ -62,6 +57,12 @@ console.log("Status:", status);
       <div className="flex flex-col ml-10 justify-between">
         <div className="bg-white/[.8] p-8 rounded shadow-md w-96 relative z-10">
           <h1 className="text-3xl text-black text-center font-semibold mb-8">Login</h1>
+          {status === "loading" && (
+            <p className="text-black text-center">Loading...</p>
+          )}
+          {formSubmitted && status === "unauthenticated" && (
+            <p className="text-red-600 text-[16px] mb-4">Not verified. Please wait for verification.</p>
+          )}
           <p className="text-red-600 text-[16px] mb-4">{error && error}</p>
           <form onSubmit={handleSubmit}>
             <p className="text-base/10 text-black">Email:</p><input type="text"
