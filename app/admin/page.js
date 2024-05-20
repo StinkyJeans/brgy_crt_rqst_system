@@ -88,7 +88,6 @@ export default function AdminPage() {
       console.error('Error verifying user:', error);
     }
   };
-  
 
   const handleUserVerification = () => {
     setShowUserVerification(prevState => !prevState);
@@ -147,7 +146,7 @@ export default function AdminPage() {
   return (
     <div className="flex text-center">
       {/* Sidebar */}
-      <div className="bg-gray-200 w-1/4 p-4 mb-[700px]  w-[170px] rounded">
+      <div className="bg-gray-200 w-1/4 p-4 mb-[700px] w-[170px] rounded mt-[5.5%]">
         <h2 className="text-lg font-semibold mb-4 text-black">Admin Dashboard</h2>
         <ul>
           <li className="mb-2">
@@ -174,180 +173,185 @@ export default function AdminPage() {
       </div>
 
       {/* Main Content */}
-      <div className={` w-[500x] rounded p-5 ${showUserVerification || showCertificateVerification}`}>
+      <div className={`p-5 ${showUserVerification || showCertificateVerification}`}>
         {showUserVerification && (
           <>
-
-            <div className="mt-8 flow-root bg-white rounded">
-  <div className="mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-      <div className="p-10 overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-      <h1 className="text-base font-semibold leading-6 text-black">Users</h1>
-            <p className="mt-2 text-sm text-gray-900 pb-10">
-              A list of all the users that is needed to be verified.
-            </p>
-        <table className="min-w-full divide-y divide-gray-700 bg-white">
-          
-          <thead>
-            <tr>
-              <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-black sm:pl-0">
-                First Name
-              </th>
-              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
-                Middle Name
-              </th>
-              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
-                Last Name
-              </th>
-              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
-                Email
-              </th>
-              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
-                Birth Date
-              </th>
-              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
-                Gender
-              </th>
-              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
-                Role
-              </th>
-              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
-                User ID Image
-              </th>
-              <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                <span className="sr-only">Edit</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-800">
-          {currentUsers
-          .filter(user => !user.verified) 
-          .map((user) => (
-              <tr key={user._id}>
-                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                  {user.firstName}
-                </td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.middleName}</td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.lastName}</td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.email}</td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{new Date(user.birthDate).toLocaleDateString()}</td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.gender}</td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.role}</td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
-                  <div className="flex items-center justify-between">
-                    <div className="truncate max-w-[100px]">{user.image}</div>
-                    <button
-                      onClick={() => {
-                        navigator.clipboard.writeText(user.image);
-                        alert('URL copied to clipboard');
-                      }}
-                      className="ml-2 p-1 text-gray-500 hover:text-gray-700"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="currentColor">
-                        <path
-                          fillRule="evenodd"
-                          d="M2 2a2 2 0 012-2h5a2 2 0 012 2v2h6a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2-1a1 1 0 00-1 1v1h14V2a1 1 0 00-1-1H4zm1 4a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm12 13a1 1 0 01-1 1H4a1 1 0 01-1-1V9h16v9zM6 8a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2V10a2 2 0 00-2-2H6z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </button>
+            <div className="mt-8 flow-root bg-white rounded p-5">
+              <div className="mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                  <div className="p-10 overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                    <h1 className="text-base font-semibold leading-6 text-black">Users</h1>
+                    <p className="mt-2 text-sm text-gray-900 pb-10">
+                      A list of all the users that need to be verified.
+                    </p>
+                    <table className="min-w-full divide-y divide-gray-700 bg-white">
+                      <thead>
+                        <tr>
+                          <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-black sm:pl-0">
+                            First Name
+                          </th>
+                          <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                            Middle Name
+                          </th>
+                          <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                            Last Name
+                          </th>
+                          <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                            Email
+                          </th>
+                          <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                            Birth Date
+                          </th>
+                          <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                            Gender
+                          </th>
+                          <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                            Role
+                          </th>
+                          <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                            User ID Image
+                          </th>
+                          <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                            <span className="sr-only">Edit</span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-800">
+                        {currentUsers
+                          .filter(user => !user.verified)
+                          .map((user) => (
+                            <tr key={user._id}>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                {user.firstName}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.middleName}</td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.lastName}</td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.email}</td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{new Date(user.birthDate).toLocaleDateString()}</td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.gender}</td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.role}</td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
+                                <div className="flex items-center justify-between">
+                                  <div className="truncate max-w-[100px]">{user.image}</div>
+                                  <button
+                                    onClick={() => {
+                                      navigator.clipboard.writeText(user.image);
+                                      alert('URL copied to clipboard');
+                                    }}
+                                    className="ml-2 p-1 text-gray-500 hover:text-gray-700"
+                                  >
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="currentColor">
+                                      <path
+                                        fillRule="evenodd"
+                                        d="M2 2a2 2 0 012-2h5a2 2 0 012 2v2h6a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2-1a1 1 0 00-1 1v1h14V2a1 1 0 00-1-1H4zm1 4a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm12 13a1 1 0 01-1 1H4a1 1 0 01-1-1V9h16v9zM6 8a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2V10a2 2 0 00-2-2H6z"
+                                        clipRule="evenodd"
+                                      />
+                                    </svg>
+                                  </button>
+                                </div>
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.verified}</td>
+                              <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                                {!user.verified ? (
+                                  <button onClick={() => handleVerify(user.email)} className="text-indigo-600 hover:text-indigo-500">
+                                    Verify
+                                    <span className="sr-only">, {user.firstName}</span>
+                                  </button>
+                                ) : (
+                                  <span className="text-green-600">Verified</span>
+                                )}
+                              </td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </table>
+                    <div className="flex justify-between mt-4">
+                      <button
+                        onClick={prevPage}
+                        disabled={currentPage === 1}
+                        className={`px-3 py-1 rounded ${currentPage === 1 ? 'bg-gray-300' : 'bg-blue-600 text-white'} hover:bg-blue-700`}
+                      >
+                        Previous
+                      </button>
+                      <button
+                        onClick={nextPage}
+                        disabled={currentPage * usersPerPage >= users.length}
+                        className={`px-3 py-1 rounded ${currentPage * usersPerPage >= users.length ? 'bg-gray-300' : 'bg-blue-600 text-white'} hover:bg-blue-700`}
+                      >
+                        Next
+                      </button>
+                    </div>
                   </div>
-                </td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.verified}</td>
-                <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                  {!user.verified ? (
-                    <button onClick={() => handleVerify(user.email)} className="text-indigo-600 hover:text-indigo-500">
-                      Verify
-                      <span className="sr-only">, {user.firstName}</span>
-                    </button>
-                  ) : (
-                    <span className="text-green-600">Verified</span>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="flex justify-between mt-4">
-          <button
-            onClick={prevPage}
-            disabled={currentPage === 1}
-            className={`px-3 py-1 rounded ${currentPage === 1 ? 'bg-gray-300' : 'bg-blue-600 text-white'} hover:bg-blue-700`}
-          >
-            Previous
-          </button>
-          <button
-            onClick={nextPage}
-            disabled={currentPage * usersPerPage >= users.length}
-            className={`px-3 py-1 rounded ${currentPage * usersPerPage >= users.length ? 'bg-gray-300' : 'bg-blue-600 text-white'} hover:bg-blue-700`}
-          >
-            Next
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+                </div>
+              </div>
+            </div>
           </>
         )}
 
-      {showCertificateVerification && (
+        {showCertificateVerification && (
           <>
-            <h1 className="text-base font-semibold leading-6 text-black">Certificates</h1>
-            <p className="mt-2 text-sm text-gray-900">
-              A list of all the certificates including their First Name, Purpose, and Document Title.
-            </p>
-            <div className="mt-8 flow-root">
-              <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="mt-8 flow-root bg-white rounded p-5">
+              <div className="mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                  <table className="min-w-full divide-y divide-gray-700">
-                    <thead>
-                      <tr>
-                        <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-black sm:pl-0">
-                          First Name
-                        </th>
-                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
-                          Purpose
-                        </th>
-                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
-                          Document Title
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-800">
-                      {currentCertificates.map((certificate) => (
-                        <tr key={certificate._id}>
-                          <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                            {certificate.firstName}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{certificate.purpose}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{certificate.documentTitle}</td>
-                          <td>
-                            <button onClick={() => handleVerify(certificate.email)} className="text-indigo-600 hover:text-indigo-500 text-sm">
-                              Send Notification
-                              <span className="sr-only">, {certificate.firstName}</span>
-                            </button>
-                          </td>
+                  <div className="p-10 overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                    <h1 className="text-base font-semibold leading-6 text-black">Certificates</h1>
+                    <p className="mt-2 text-sm text-gray-900 pb-10">
+                      A list of all the certificates that need to be verified.
+                    </p>
+                    <table className="min-w-full divide-y divide-gray-700 bg-white">
+                      <thead>
+                        <tr>
+                          <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-black sm:pl-0">
+                            First Name
+                          </th>
+                          <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                            Purpose
+                          </th>
+                          <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                            Document Title
+                          </th>
+                          <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                            <span className="sr-only">Edit</span>
+                          </th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  <div className="ml-[25%] flex gap-10 mt-4">
-                    <button
-                      onClick={prevCertPage}
-                      disabled={currentCertPage === 1}
-                      className={`px-3 py-1 rounded ${currentCertPage === 1 ? 'bg-gray-300' : 'bg-blue-600 text-white'} hover:bg-blue-700`}
-                    >
-                      Previous
-                    </button>
-                    <button
-                      onClick={nextCertPage}
-                      disabled={currentCertPage * certsPerPage >= certificates.length}
-                      className={`px-3 py-1 rounded ${currentCertPage * certsPerPage >= certificates.length ? 'bg-gray-300' : 'bg-blue-600 text-white'} hover:bg-blue-700`}
-                    >
-                      Next
-                    </button>
+                      </thead>
+                      <tbody className="divide-y divide-gray-800">
+                        {currentCertificates.map((certificate) => (
+                          <tr key={certificate._id}>
+                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              {certificate.firstName}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{certificate.purpose}</td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{certificate.documentTitle}</td>
+                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                              <button
+                                onClick={() => alert(`Notification sent to ${certificate.firstName}`)}
+                                className="text-indigo-600 hover:text-indigo-500"
+                              >
+                                Send Notification
+                                <span className="sr-only">, {certificate.firstName}</span>
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                    <div className="flex justify-between mt-4">
+                      <button
+                        onClick={prevCertPage}
+                        disabled={currentCertPage === 1}
+                        className={`px-3 py-1 rounded ${currentCertPage === 1 ? 'bg-gray-300' : 'bg-blue-600 text-white'} hover:bg-blue-700`}
+                      >
+                        Previous
+                      </button>
+                      <button
+                        onClick={nextCertPage}
+                        disabled={currentCertPage * certsPerPage >= certificates.length}
+                        className={`px-3 py-1 rounded ${currentCertPage * certsPerPage >= certificates.length ? 'bg-gray-300' : 'bg-blue-600 text-white'} hover:bg-blue-700`}
+                      >
+                        Next
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
