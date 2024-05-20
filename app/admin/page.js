@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import UserPage from './Sidebar/users/page';
 import classNames from 'classnames'; // Optional: for conditional classNames
 
 export default function AdminPage() {
@@ -20,6 +21,8 @@ export default function AdminPage() {
   const [submitted, setSubmitted] = useState(false);
   const [sentCertificates, setSentCertificates] = useState([]);
   const [fadeOutCertificates, setFadeOutCertificates] = useState([]);
+  const [showAllUsers, setShowAllUsers] = useState(false);
+
   const certsPerPage = 10;
   const usersPerPage = 10;
 
@@ -150,17 +153,25 @@ export default function AdminPage() {
       console.error('Error completing certificate:', error);
     }
   };
-
-  
-
-  const handleUserVerification = () => {
-    setShowUserVerification(prevState => !prevState);
-    setActiveButton(prevState => prevState === 'userVerification' ? null : 'userVerification');
+  const toggleUserPage = () => {
+    setShowAllUsers(!showAllUsers);
+    setActiveButton(null); // Reset activeButton state
+    setShowUserVerification(false);
+    setShowCertificateVerification(false);
   };
-
+  
+  const handleUserVerification = () => {
+    setShowUserVerification(true);
+    setShowCertificateVerification(false);
+    setShowAllUsers(false);
+    setActiveButton('userVerification'); // Update activeButton state
+  };
+    
   const handleCertificateVerification = () => {
-    setShowCertificateVerification(prevState => !prevState);
-    setActiveButton(prevState => prevState === 'certificateVerification' ? null : 'certificateVerification');
+    setShowCertificateVerification(true);
+    setShowUserVerification(false);
+    setShowAllUsers(false);
+    setActiveButton('certificateVerification'); // Update activeButton state
   };
 
   const nextPage = () => {
@@ -216,26 +227,38 @@ export default function AdminPage() {
       <div className="bg-gray-200 w-1/4 p-4 mb-[700px] w-[170px] rounded mt-[5.5%]">
         <h2 className="text-lg font-semibold mb-4 text-black">Admin Dashboard</h2>
         <ul>
-          <li className="mb-2">
-            <button
-              onClick={handleUserVerification}
-              className={`${
-                activeButton === 'userVerification' ? 'bg-blue-600 text-white' : 'bg-transparent text-blue-600'
-              } hover:text-blue-800 px-2 py-1 rounded`}
-            >
-              User Verification
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={handleCertificateVerification}
-              className={`${
-                activeButton === 'certificateVerification' ? 'bg-blue-600 text-white' : 'bg-transparent text-blue-600'
-              } hover:text-blue-800 px-2 py-1 rounded`}
-            >
-              Certificate Verification
-            </button>
-          </li>
+       
+<li>
+  <button
+    onClick={toggleUserPage}
+    className={`${
+      showAllUsers ? 'bg-blue-600 text-white' : 'bg-transparent text-blue-600'
+    } hover:text-blue-800 px-2 py-1 rounded`}
+  >
+    All Users
+  </button>
+</li>
+
+<li className="mb-2">
+  <button
+    onClick={handleUserVerification}
+    className={`${
+      activeButton === 'userVerification' ? 'bg-blue-600 text-white' : 'bg-transparent text-blue-600'
+    } hover:text-blue-800 px-2 py-1 rounded`}
+  >
+    User Verification
+  </button>
+</li>
+<li>
+  <button
+    onClick={handleCertificateVerification}
+    className={`${
+      activeButton === 'certificateVerification' ? 'bg-blue-600 text-white' : 'bg-transparent text-blue-600'
+    } hover:text-blue-800 px-2 py-1 rounded`}
+  >
+    Certificate Verification
+  </button>
+</li>
         </ul>
       </div>
 
@@ -448,6 +471,11 @@ export default function AdminPage() {
             </div>
           </>
         )}
+       
+        {showAllUsers && (
+          <UserPage />
+        )}
+        
       </div>
     </div>
   );

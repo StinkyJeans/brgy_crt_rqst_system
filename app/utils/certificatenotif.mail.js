@@ -7,7 +7,7 @@ const transporter = nodemailer.createTransport({
     auth: {
         type: "OAuth2",
         user: "norepbarangayrizal@gmail.com",
-        accessToken: "ya29.a0AXooCgvcOjo59lhVqU4fHYCoFoavjhFsfprMeNs_JRZjMe9Tw8_rPwQsnVAG3EppTnbYPnblPUM9zXqn5XvcJrWNLaCMWAdV9YGL4iVoDlJzNd9h-msB3dtlGPcfF9B3-4eAR-FQhmfkO1J60mrzQWMqtAoWPqYVXGphOAaCgYKAYESARMSFQHGX2MiclAPq21-pA_ZBbfucGwZLA0173", // Update with your access token
+        accessToken: "ya29.a0AXooCgvHLBVaFBAzszbEvWhQ_2XmbBzTItMgcq_J-TYh8le3anX6TWKBM1OR_TDyF5x7y3W8Y8njNZ8q9WzHS6_9ffNDAurO79QxAqegAlS2DxC6wtHJqXS4QxAmP9yMIkPDXz0f-B9Wv3kh0wmmSH7tYUYl6qk_6KunYAaCgYKAVMSARMSFQHGX2Mi7VYJK3cL5_1rSZvPsvX_XA0173", // Update with your access token
     },
 });
 
