@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import classNames from 'classnames'; // Optional: for conditional classNames
 
 export default function AdminPage() {
   const { data: session, status: sessionStatus } = useSession();
@@ -10,11 +11,15 @@ export default function AdminPage() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [users, setUsers] = useState([]);
   const [certificates, setCertificates] = useState([]);
-  const [showUserVerification, setShowUserVerification] = useState(false);
+  const [showUserVerification, setShowUserVerification] = useState(true);
   const [showCertificateVerification, setShowCertificateVerification] = useState(false);
   const [activeButton, setActiveButton] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentCertPage, setCurrentCertPage] = useState(1);
+  const [result, setResult] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
+  const [sentCertificates, setSentCertificates] = useState([]);
+  const [fadeOutCertificates, setFadeOutCertificates] = useState([]);
   const certsPerPage = 10;
   const usersPerPage = 10;
 
@@ -89,6 +94,65 @@ export default function AdminPage() {
     }
   };
 
+  const sendEmail = async (event, certificate) => {
+    event.preventDefault();
+  
+    try {
+      // Send notification email
+      const response = await fetch('/api/sendnotif', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: certificate.firstName,
+          email: certificate.email,
+          purpose: certificate.purpose,
+          documentTitle: certificate.documentTitle
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to send notification email');
+      }
+      alert('Notification email sent successfully');
+  
+    } catch (error) {
+      console.error('Error sending notification', error);
+      // Handle errors...
+    }
+  };
+  const handleCertificateComplete = async (certificateId) => {
+    try {
+      const response = await fetch(`/api/sendnotif/status`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ certificateId }), // Include the certificate ID in the request body
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      // If the response is OK, update the certificate list after completion
+      const updatedCertificates = certificates.map(certificate => {
+        if (certificate._id === certificateId) {
+          return { ...certificate, status: 'complete' }; // Mark the certificate as complete
+        }
+        return certificate;
+      });
+  
+      // Update the state with the updated certificate list
+      setCertificates(updatedCertificates);
+    } catch (error) {
+      console.error('Error completing certificate:', error);
+    }
+  };
+
+  
+
   const handleUserVerification = () => {
     setShowUserVerification(prevState => !prevState);
     setActiveButton(prevState => prevState === 'userVerification' ? null : 'userVerification');
@@ -100,7 +164,8 @@ export default function AdminPage() {
   };
 
   const nextPage = () => {
-    if (currentPage * usersPerPage < users.length) {
+    const remainingUnverifiedUsers = users.filter(user => !user.verified).length - currentPage * usersPerPage;
+    if (remainingUnverifiedUsers > 0) {
       setCurrentPage(currentPage + 1);
     }
   };
@@ -113,7 +178,9 @@ export default function AdminPage() {
 
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+  const currentUsers = users
+    .filter(user => !user.verified) // Filter first
+    .slice(indexOfFirstUser, indexOfLastUser); // Then slice
 
   const nextCertPage = () => {
     if (currentCertPage * certsPerPage < certificates.length) {
@@ -198,7 +265,7 @@ export default function AdminPage() {
                           </th>
                           <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
                             Email
-                          </th>
+                          </th>    
                           <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
                             Birth Date
                           </th>
@@ -212,22 +279,20 @@ export default function AdminPage() {
                             User ID Image
                           </th>
                           <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                            <span className="sr-only">Edit</span>
+                            <span className="sr-only">Verify</span>
                           </th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-gray-800">
-                        {currentUsers
-                          .filter(user => !user.verified)
-                          .map((user) => (
-                            <tr key={user._id}>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                                {user.firstName}
-                              </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.middleName}</td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.lastName}</td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.email}</td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{new Date(user.birthDate).toLocaleDateString()}</td>
+                      <tbody className="divide-y divide-gray-200 bg-white">
+                        {currentUsers.map(user => (
+                          <tr key={user.id}>
+                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-black sm:pl-0">
+                              {user.firstName}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.middleName}</td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.lastName}</td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.email}</td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{new Date(user.birthDate).toLocaleDateString()}</td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.gender}</td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.role}</td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
@@ -261,22 +326,22 @@ export default function AdminPage() {
                                   <span className="text-green-600">Verified</span>
                                 )}
                               </td>
-                            </tr>
-                          ))}
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
-                    <div className="flex justify-between mt-4">
+                    <div className="mt-4 flex justify-between">
                       <button
                         onClick={prevPage}
+                        className="inline-flex items-center px-4 py-2 bg-gray-200 text-sm font-medium text-gray-800 rounded hover:bg-gray-300"
                         disabled={currentPage === 1}
-                        className={`px-3 py-1 rounded ${currentPage === 1 ? 'bg-gray-300' : 'bg-blue-600 text-white'} hover:bg-blue-700`}
                       >
                         Previous
                       </button>
                       <button
                         onClick={nextPage}
-                        disabled={currentPage * usersPerPage >= users.length}
-                        className={`px-3 py-1 rounded ${currentPage * usersPerPage >= users.length ? 'bg-gray-300' : 'bg-blue-600 text-white'} hover:bg-blue-700`}
+                        className="inline-flex items-center px-4 py-2 bg-gray-200 text-sm font-medium text-gray-800 rounded hover:bg-gray-300"
+                        disabled={currentPage * usersPerPage >= users.filter(user => !user.verified).length}
                       >
                         Next
                       </button>
@@ -298,11 +363,14 @@ export default function AdminPage() {
                     <p className="mt-2 text-sm text-gray-900 pb-10">
                       A list of all the certificates that need to be verified.
                     </p>
-                    <table className="min-w-full divide-y divide-gray-700 bg-white">
+                    <table className="min-w-full divide-y divide-gray-300 bg-white">
                       <thead>
                         <tr>
                           <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-black sm:pl-0">
                             First Name
+                          </th>
+                          <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                            Email
                           </th>
                           <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
                             Purpose
@@ -310,44 +378,66 @@ export default function AdminPage() {
                           <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
                             Document Title
                           </th>
+                          <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
+                            Status
+                          </th>
                           <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                            <span className="sr-only">Edit</span>
+                            <span className="sr-only">Send Notification</span>
                           </th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-gray-800">
-                        {currentCertificates.map((certificate) => (
-                          <tr key={certificate._id}>
-                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                      <tbody className="divide-y divide-gray-200 bg-white">
+                        {currentCertificates.map(certificate => (
+                          <tr
+                            key={certificate._id}
+                            className={classNames({
+                              'opacity-100 transition-opacity duration-1000': !fadeOutCertificates.includes(certificate._id),
+                              'opacity-0 transition-opacity duration-1000': fadeOutCertificates.includes(certificate._id)
+                            })}
+                          >
+                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-black sm:pl-0">
                               {certificate.firstName}
                             </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{certificate.email}</td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{certificate.purpose}</td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{certificate.documentTitle}</td>
-                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{certificate.status}</td>
+                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">  
                               <button
-                                onClick={() => alert(`Notification sent to ${certificate.firstName}`)}
-                                className="text-indigo-600 hover:text-indigo-500"
+                                onClick={() => handleCertificateComplete(certificate._id)}
+                                className="inline-flex items-center rounded border border-transparent bg-blue-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                               >
-                                Send Notification
-                                <span className="sr-only">, {certificate.firstName}</span>
-                              </button>
+                                Complete
+                             </button>
+                            </td>
+                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                              {sentCertificates.includes(certificate._id) ? (
+                                <span className="text-green-600">Sent</span>
+                              ) : (
+                                <button
+                                  className="inline-flex items-center rounded border border-transparent bg-blue-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                  onClick={(event) => sendEmail(event, certificate)}
+                                >
+                                  Send Notification
+                                </button>
+                              )}
                             </td>
                           </tr>
                         ))}
                       </tbody>
                     </table>
-                    <div className="flex justify-between mt-4">
+                    <div className="mt-4 flex justify-between">
                       <button
                         onClick={prevCertPage}
+                        className="inline-flex items-center px-4 py-2 bg-gray-200 text-sm font-medium text-gray-800 rounded hover:bg-gray-300"
                         disabled={currentCertPage === 1}
-                        className={`px-3 py-1 rounded ${currentCertPage === 1 ? 'bg-gray-300' : 'bg-blue-600 text-white'} hover:bg-blue-700`}
                       >
                         Previous
                       </button>
                       <button
                         onClick={nextCertPage}
+                        className="inline-flex items-center px-4 py-2 bg-gray-200 text-sm font-medium text-gray-800 rounded hover:bg-gray-300"
                         disabled={currentCertPage * certsPerPage >= certificates.length}
-                        className={`px-3 py-1 rounded ${currentCertPage * certsPerPage >= certificates.length ? 'bg-gray-300' : 'bg-blue-600 text-white'} hover:bg-blue-700`}
                       >
                         Next
                       </button>

@@ -7,6 +7,8 @@ export default function Page() {
   const [error, setError] = useState('');
   const [documentTitle , setDocumentTitle] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [email, setEmail ] = useState('');
+  const [status, setStatus] = useState('pending'); // Default status
 
   useEffect(() => {
     // Set document title to "Barangay Clearance" by default
@@ -26,7 +28,7 @@ export default function Page() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!firstName || !purpose) {
+    if (!firstName || !email || !purpose)  {
       setError('Please fill up all the requirements');
       return;
     }
@@ -39,8 +41,10 @@ export default function Page() {
         },
         body: JSON.stringify({
           firstName,
+          email,
           purpose,
-          documentTitle: 'Barangay Clearance', // Set document title automatically
+          documentTitle: documentTitle,
+          status
         }),
       });
 
@@ -74,10 +78,13 @@ export default function Page() {
           <img src="/Certificate Indigency.jpg" alt="Logo" className="h-50  w-auto mt-20"></img>
         </div>
         <div className="font-mono mt-20">
-          Barangay Clearance: This document is an official certification issued by the barangay confirming that the holder is a resident of that specific barangay and has no outstanding obligations such as unpaid taxes or fees. It's often required for a variety of purposes, including employment, business permits, applying for government IDs, or legal transactions.
+          Barangay Clearance: This document is an official certification issued by the 
+          barangay confirming that the holder is a resident of that specific barangay and has
+           no outstanding obligations such as unpaid taxes or fees. It's often required for a 
+           variety of purposes, including employment, business permits, applying for government IDs, or legal transactions.
 
           <form onSubmit={handleSubmit}>
-            <div className="pt-10 pb-7">
+            <div className="pt-10 pb-4">
               <label htmlFor="firstName" className="text-white">First Name:</label>
               <input
                 id="firstName"
@@ -85,6 +92,17 @@ export default function Page() {
                 className="text-black"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="pt-10 pb-4">
+              <label htmlFor="email" className="text-white">Email:</label>
+              <input
+                id="email"
+                type="text"
+                className="text-black"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>

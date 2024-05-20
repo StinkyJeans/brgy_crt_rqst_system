@@ -36,9 +36,9 @@ const Navbar = () => {
                     ) : (
                         <> 
                           
-                          <Link className="text-black" href="/userInfo">
+                        <li className='text-black'>
                           {session.user?.email}
-                          </Link>
+                          </li>
 
                             
                             <li>

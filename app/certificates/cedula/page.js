@@ -7,9 +7,10 @@ export default function Page() {
   const [error, setError] = useState('');
   const [documentTitle , setDocumentTitle] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [email, setEmail ] = useState('');
 
   useEffect(() => {
-    // Set document title to "Barangay Clearance" by default
+ 
     setDocumentTitle('Cedula');
   }, []);
 
@@ -26,7 +27,7 @@ export default function Page() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!firstName || !purpose) {
+    if (!firstName || !email || !purpose)  {
       setError('Please fill up all the requirements');
       return;
     }
@@ -39,8 +40,9 @@ export default function Page() {
         },
         body: JSON.stringify({
           firstName,
+          email,
           purpose,
-          documentTitle: 'Cedula', // Set document title automatically
+          documentTitle: 'Cedula', 
         }),
       });
 
@@ -71,7 +73,7 @@ export default function Page() {
       <label className="ml-[45%] font-semibold font-sans">Cedula</label>
       <div className="grid grid-cols-2 gap-5 ">
         <div>
-          <img src="/Certificate Indigency.jpg" alt="Logo" className="h-50  w-auto mt-20"></img>
+          <img src="/Cedula.jpg" alt="Logo" className="h-50  w-auto mt-20"></img>
         </div>
         <div className="font-mono mt-20">
         Cedula: Also known as a community tax certificate, the cedula is a mandatory document required by Philippine law for individuals engaged 
@@ -79,7 +81,7 @@ export default function Page() {
         which is levied based on their income or property holdings.
 
           <form onSubmit={handleSubmit}>
-            <div className="pt-10 pb-7">
+            <div className="pt-10 pb-4">
               <label htmlFor="firstName" className="text-white">First Name:</label>
               <input
                 id="firstName"
@@ -87,6 +89,17 @@ export default function Page() {
                 className="text-black"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="pt-10 pb-4">
+              <label htmlFor="email" className="text-white">Email:</label>
+              <input
+                id="email"
+                type="text"
+                className="text-black"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>

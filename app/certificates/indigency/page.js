@@ -7,9 +7,10 @@ export default function Page() {
   const [error, setError] = useState('');
   const [documentTitle , setDocumentTitle] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [email, setEmail ] = useState('');
 
   useEffect(() => {
-    // Set document title to "Barangay Clearance" by default
+
     setDocumentTitle('Barangay Indigency');
   }, []);
 
@@ -26,7 +27,7 @@ export default function Page() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!firstName || !purpose) {
+    if (!firstName || !email || !purpose)  {
       setError('Please fill up all the requirements');
       return;
     }
@@ -39,8 +40,9 @@ export default function Page() {
         },
         body: JSON.stringify({
           firstName,
+          email,
           purpose,
-          documentTitle: 'Barangay Indigency', // Set document title automatically
+          documentTitle: 'Barangay Indigency', 
         }),
       });
 
@@ -78,9 +80,8 @@ export default function Page() {
         little to no means of livelihood and are in need of assistance from the government. It serves as proof of their financial situation and 
         may entitle them to certain benefits or services provided by the government or non-governmental organizations.
 
-
           <form onSubmit={handleSubmit}>
-            <div className="pt-10 pb-7">
+            <div className="pt-10 pb-4">
               <label htmlFor="firstName" className="text-white">First Name:</label>
               <input
                 id="firstName"
@@ -88,6 +89,17 @@ export default function Page() {
                 className="text-black"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="pt-10 pb-4">
+              <label htmlFor="email" className="text-white">Email:</label>
+              <input
+                id="email"
+                type="text"
+                className="text-black"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
