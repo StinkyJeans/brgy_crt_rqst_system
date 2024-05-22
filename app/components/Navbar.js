@@ -18,11 +18,11 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="flex gap-5 text-base/10">
-                {session ? (
-                <Link href="/contactus">
+              
+                    <Link href="/contactus">
                         <li className="ml-2 text-black ">Contact Us</li>
                     </Link>  
-                ) : null }
+            
                     {!session ? (
                         <>
                             <Link href="/login">
@@ -33,7 +33,7 @@ const Navbar = () => {
                                 <li className='text-black'>Signup</li>
                             </Link>
                         </>
-                    ) : (
+                        ) : (
                         <> 
                           
                         <li className='text-black'>

@@ -46,7 +46,7 @@ const Login = () => {
     });
 
     if (res?.error) {
-      setError(res.error);
+      setError(res.error === 'CredentialsSignin' ? 'Incorrect email or password' : res.error);
       setLoading(false);
     }
   };
@@ -60,10 +60,12 @@ const Login = () => {
           {status === "loading" && (
             <p className="text-black text-center">Loading...</p>
           )}
-          {formSubmitted && status === "unauthenticated" && (
+          {formSubmitted && !loading && status === "unauthenticated" && !error && (
             <p className="text-red-600 text-[16px] mb-4">Not verified. Please wait for verification.</p>
           )}
-          <p className="text-red-600 text-[16px] mb-4">{error && error}</p>
+          {error && (
+            <p className="text-red-600 text-[16px] mb-4">{error}</p>
+          )}
           <form onSubmit={handleSubmit}>
             <p className="text-base/10 text-black">Email:</p><input type="text"
               className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black"

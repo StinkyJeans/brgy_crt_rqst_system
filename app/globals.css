@@ -28,3 +28,19 @@ body {
     text-wrap: balance;
   }
 }
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .print\:bg-white {
+    background-color: white !important;
+  }
+
+  .print\:shadow-none {
+    box-shadow: none !important;
+  }
+
+  /* Add more print-specific styles as needed */
+}

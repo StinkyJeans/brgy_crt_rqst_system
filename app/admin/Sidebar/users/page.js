@@ -1,8 +1,6 @@
-"use client"
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-
 
 export default function UserPage() {
   const { data: session, status: sessionStatus } = useSession();
@@ -43,7 +41,6 @@ export default function UserPage() {
     fetchUsers();
   }, []);
 
-
   const nextPage = () => {
     const remainingUnverifiedUsers = users.length - currentPage * usersPerPage;
 
@@ -65,7 +62,6 @@ export default function UserPage() {
   const indexOfLastCert = currentCertPage * certsPerPage;
   const indexOfFirstCert = indexOfLastCert - certsPerPage;
 
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -80,7 +76,6 @@ export default function UserPage() {
 
   return (
     <div className="flex text-center">
-
       {/* Main Content */}
       <div className={`p-5 ${showUserVerification}`}>
         {showUserVerification && (
@@ -89,10 +84,13 @@ export default function UserPage() {
               <div className="mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                   <div className="p-10 overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                    <h1 className="text-base font-semibold leading-6 text-black">Users</h1>
+                    <h1 className="text-base font-semibold leading-6 text-black">Users Table</h1>
                     <p className="mt-2 text-sm text-gray-900 pb-10">
                       A list of all the users.
                     </p>
+                    <div className="mb-4">
+                      <p className="text-sm text-black font-bold">Page: {currentPage}</p>
+                    </div>
                     <table className="min-w-full divide-y divide-gray-700 bg-white">
                       <thead>
                         <tr>
@@ -130,40 +128,38 @@ export default function UserPage() {
                             .filter(user => user.role !== 'admin') // Filter out users with the role of admin
                             .map(user => (
                               <tr key={user.id}>
-                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-black sm:pl-0">
-                              {user.firstName}
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.middleName}</td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.lastName}</td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.email}</td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{new Date(user.birthDate).toLocaleDateString()}</td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.gender}</td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.role}</td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
-                                <div className="flex items-center justify-between">
-                                  <div className="truncate max-w-[100px]">{user.image}</div>
-                                  <button
-                                    onClick={() => {
-                                      navigator.clipboard.writeText(user.image);
-                                      alert('URL copied to clipboard');
-                                    }}
-                                    className="ml-2 p-1 text-gray-500 hover:text-gray-700"
-                                  >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="currentColor">
-                                      <path
-                                        fillRule="evenodd"
-                                        d="M2 2a2 2 0 012-2h5a2 2 0 012 2v2h6a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2-1a1 1 0 00-1 1v1h14V2a1 1 0 00-1-1H4zm1 4a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm12 13a1 1 0 01-1 1H4a1 1 0 01-1-1V9h16v9zM6 8a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2V10a2 2 0 00-2-2H6z"
-                                        clipRule="evenodd"
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-black sm:pl-0">
+                                  {user.firstName}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.middleName}</td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.lastName}</td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.email}</td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{new Date(user.birthDate).toLocaleDateString()}</td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.gender}</td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.role}</td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
+                                  <div className="flex items-center justify-between">
+                                    <div className="truncate max-w-[100px]">{user.image}</div>
+                                    <button
+                                      onClick={() => {
+                                        navigator.clipboard.writeText(user.image);
+                                        alert('URL copied to clipboard');
+                                      }}
+                                      className="ml-2 p-1 text-gray-500 hover:text-gray-700"
+                                    >
+                                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="currentColor">
+                                        <                                        path
+                                          fillRule="evenodd"
+                                          d="M2 2a2 2 0 012-2h5a2 2 0 012 2v2h6a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2-1a1 1 0 00-1 1v1h14V2a1 1 0 00-1-1H4zm1 4a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm12 13a1 1 0 01-1 1H4a1 1 0 01-1-1V9h16v9zM6 8a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2V10a2 2 0 00-2-2H6z"
+                                          clipRule="evenodd"
                                       />
                                     </svg>
                                   </button>
                                 </div>
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.verified.toString()}</td>
-
-                          </tr>
-                          
-                        ))}
+                            </tr>
+                          ))}
                       </tbody>
                     </table>
                     <div className="mt-4 flex justify-between">
@@ -174,10 +170,13 @@ export default function UserPage() {
                       >
                         Previous
                       </button>
+                      <div>
+                        Page {currentPage}
+                      </div>
                       <button
                         onClick={nextPage}
                         className="inline-flex items-center px-4 py-2 bg-gray-200 text-sm font-medium text-gray-800 rounded hover:bg-gray-300"
-                        ddisabled={currentPage * usersPerPage >= users.length}
+                        disabled={currentPage * usersPerPage >= users.length}
                       >
                         Next
                       </button>
@@ -188,9 +187,8 @@ export default function UserPage() {
             </div>
           </>
         )}
-
-        
       </div>
     </div>
   );
 }
+

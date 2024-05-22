@@ -1,9 +1,11 @@
 "use client"
-import React, { useState, useEffect } from 'react';
+import React, {useRef, useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import UserPage from './Sidebar/users/page';
 import classNames from 'classnames'; // Optional: for conditional classNames
+
+
 
 export default function AdminPage() {
   const { data: session, status: sessionStatus } = useSession();
@@ -22,6 +24,8 @@ export default function AdminPage() {
   const [sentCertificates, setSentCertificates] = useState([]);
   const [fadeOutCertificates, setFadeOutCertificates] = useState([]);
   const [showAllUsers, setShowAllUsers] = useState(false);
+  
+
 
   const certsPerPage = 10;
   const usersPerPage = 10;
@@ -153,6 +157,42 @@ export default function AdminPage() {
       console.error('Error completing certificate:', error);
     }
   };
+  const VerifyNotification = async (user) => {
+    try {
+      const response = await fetch('/api/users/verify/sendnotif', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: user.firstName,
+          email: user.email,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to send notification');
+      }
+  
+      alert('Notification sent successfully');
+    } catch (error) {
+      console.error('Error sending notification:', error);
+    }
+  };
+  const handlePrint = (documentTitle) => {
+    // Replace "pdf_files/" with the appropriate path to your PDF files directory
+    const pdfUrl = `/pdf_files/${documentTitle}.pdf`;
+  
+    // Create a new window with the PDF URL
+    const printWindow = window.open(pdfUrl, "_blank");
+  
+    // Ensure the window has fully loaded before attempting to print
+    printWindow.onload = () => {
+      // Print the contents of the window
+      printWindow.print();
+    };
+  };
+
   const toggleUserPage = () => {
     setShowAllUsers(!showAllUsers);
     setActiveButton(null); // Reset activeButton state
@@ -349,6 +389,14 @@ export default function AdminPage() {
                                   <span className="text-green-600">Verified</span>
                                 )}
                               </td>
+                              <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                             <button
+                                className="inline-flex items-center rounded border border-transparent bg-blue-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                onClick={() => VerifyNotification(user)}
+                              >
+                                Send Notification
+                              </button>
+                            </td>
                           </tr>
                         ))}
                       </tbody>
@@ -390,7 +438,7 @@ export default function AdminPage() {
                       <thead>
                         <tr>
                           <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-black sm:pl-0">
-                            First Name
+                            Full Name
                           </th>
                           <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
                             Email
@@ -444,6 +492,14 @@ export default function AdminPage() {
                                   Send Notification
                                 </button>
                               )}
+                            </td>
+                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                             <button
+                               onClick={() => handlePrint(certificate.documentTitle)}
+                               className="inline-flex items-center rounded border border-transparent bg-blue-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                             >
+                               Print
+                             </button>
                             </td>
                           </tr>
                         ))}

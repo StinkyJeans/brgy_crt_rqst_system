@@ -222,12 +222,13 @@ const Register = () => {
 
               </div>
               <div>
+                <label className="text-black text-base">Please Upload your ID picture with your address:</label>
                 <FilePicker onChange={handleFileChange} />
               </div>
               <div className="">
               <button
               type="submit"
-              className={`relative w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 ${loading ? 'cursor-not-allowed' : ''}`}
+              className={`mt-2 relative w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 ${loading ? 'cursor-not-allowed' : ''}`}
               disabled={loading}
               style={{ padding: '0.75rem' }}
             >

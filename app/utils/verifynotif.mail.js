@@ -11,20 +11,18 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-const sendNotificationEmail = async ({ firstName, email, purpose , documentTitle }) => {
+const VerifyNotificationEmail = async ({  email}) => {
     try {
         console.log(email);
         const emailContent = `
-            <p>Dear ${firstName},</p>
-            <p>Your requested "${documentTitle}" for "${purpose}" is now ready for pickup.</p>
-            <p>Please proceed to the designated location to collect your certificate.</p>
-            <p>Thank you.</p>
+            <p>Dear User,</p>
+            <p>You are verified now, you can now log in to our system.</p>
         `;
 
         const response = await transporter.sendMail({
             from: 'norepbarangayrizal@gmail.com',
             to: email,
-            subject: 'Certificate Pickup Notification',
+            subject: 'Verification Notice',
             html: emailContent,
         });
 
@@ -36,4 +34,4 @@ const sendNotificationEmail = async ({ firstName, email, purpose , documentTitle
     }
 };
 
-export default sendNotificationEmail;
+export default VerifyNotificationEmail;

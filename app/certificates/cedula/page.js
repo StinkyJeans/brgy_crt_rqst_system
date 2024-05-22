@@ -82,7 +82,7 @@ export default function Page() {
 
           <form onSubmit={handleSubmit}>
             <div className="pt-10 pb-4">
-              <label htmlFor="firstName" className="text-white">First Name:</label>
+              <label htmlFor="firstName" className="text-white">Full Name:</label>
               <input
                 id="firstName"
                 type="text"

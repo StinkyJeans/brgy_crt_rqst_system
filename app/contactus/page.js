@@ -57,7 +57,7 @@ export default function ContactForm() {
 
     return (
         <div className="relative isolate bg-white/[.9] mb-20 rounded">
-            {session ? (
+
                 <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
                     <div className="relative px-6 pb-20 pt-10 sm:pt-32 lg:static lg:px-8 lg:py-48">
                         <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
@@ -201,28 +201,28 @@ export default function ContactForm() {
                                     </div>
                                 </div>
                             )}
-<div className="mt-8 flex justify-end">
-  {/* Button with spinner */}
-  <button
-    type="submit"
-    className={`relative rounded-md bg-blue-500 px-5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 ${loading ? 'cursor-not-allowed' : ''}`}
-    disabled={loading} // Disable button when loading
-    style={{ padding: '0.75rem' }} // Add padding to the button
-  >
-    {/* Conditional rendering of text or spinner */}
-    {loading ? (
-      <div className="flex items-center">
-        <span className="mr-2">Sending...</span>
-        <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A8.001 8.001 0 0112 4.472v3.997c-1.302 0-2.525.314-3.608.854L6 11.291zM12 20v-4a8.003 8.003 0 01-4-6.928L4.728 13.9A9.967 9.967 0 002 12c0 5.523 4.477 10 10 10z"></path>
-        </svg>
-      </div>
-    ) : (
-      "Send message"
-    )}
-  </button>
-</div>
+                            <div className="mt-8 flex justify-end">
+                             {/* Button with spinner */}
+                             <button
+                               type="submit"
+                               className={`relative rounded-md bg-blue-500 px-5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 ${loading ? 'cursor-not-allowed' : ''}`}
+                               disabled={loading} // Disable button when loading
+                               style={{ padding: '0.75rem' }} // Add padding to the button
+                             >
+                               {/* Conditional rendering of text or spinner */}
+                               {loading ? (
+                                 <div className="flex items-center">
+                                    <span className="mr-2">Sending...</span>
+                                  <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A8.001 8.001 0 0112 4.472v3.997c-1.302 0-2.525.314-3.608.854L6 11.291zM12 20v-4a8.003 8.003 0 01-4-6.928L4.728 13.9A9.967 9.967 0 002 12c0 5.523 4.477 10 10 10z"></path>
+                                  </svg>
+                                </div>
+                             ) : (
+                                "Send message"
+                              )}
+                             </button>
+                            </div>
 
 
 
@@ -230,13 +230,8 @@ export default function ContactForm() {
                         </div>
                     </form>
                     {loading && <p>Loading...</p>}
-                    {result && (
-                        <p className={result.error ? 'text-red-500' : 'text-green-500'}>
-                            {result.error ? result.error : 'Message sent successfully!'}
-                        </p>
-                    )}
                 </div>
-            ) : null}
+            
         </div>
     )
 }
