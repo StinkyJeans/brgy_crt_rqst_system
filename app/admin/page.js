@@ -438,10 +438,10 @@ export default function AdminPage() {
                       <thead>
                         <tr>
                           <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-black sm:pl-0">
-                            Full Name
+                            Email
                           </th>
                           <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
-                            Email
+                            Full Name
                           </th>
                           <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
                             Purpose
@@ -466,13 +466,14 @@ export default function AdminPage() {
                               'opacity-0 transition-opacity duration-1000': fadeOutCertificates.includes(certificate._id)
                             })}
                           >
+                           
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{certificate.email}</td>
                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-black sm:pl-0">
                               {certificate.firstName}
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{certificate.email}</td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{certificate.purpose}</td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{certificate.documentTitle}</td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{certificate.status}</td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900 font-bold">{certificate.status}</td>
                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">  
                               <button
                                 onClick={() => handleCertificateComplete(certificate._id)}

@@ -157,7 +157,7 @@ export default function UserPage() {
                                   </button>
                                 </div>
                               </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{user.verified.toString()}</td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900 font-bold">{user.verified.toString()}</td>
                             </tr>
                           ))}
                       </tbody>

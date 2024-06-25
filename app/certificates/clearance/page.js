@@ -61,7 +61,7 @@ export default function Page() {
   };
 
   return (
-    <div className="h-auto mb-10">
+    <div className=" h-[850px] mb-10 bg-white rounded pl-5 pr-5">
       {isSubmitted && (
         <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative text-center">
           You have requested this document. Please wait for notification within 2-3 working days.
@@ -72,35 +72,39 @@ export default function Page() {
           {error}
         </div>
       )}
-      <label className="ml-[45%] font-semibold font-sans">Barangay Clearance</label>
-      <div className="grid grid-cols-2 gap-5 ">
-        <div>
-          <img src="/Certificate Indigency.jpg" alt="Logo" className="h-50  w-auto mt-20"></img>
+      <label className="ml-[45%] font-semibold font-sans text-black">Barangay Clearance</label>
+      <div className="grid grid-cols-2 gap-5">
+        <div className=''>
+          <img src="/Certificate Indigency.jpg" alt="Logo" className="h-50  w-auto mt-20 border-2 border-black rounded"></img>
         </div>
         <div className="font-mono mt-20">
+          <div className="">
+          <label className='text-gray-500'>
           Barangay Clearance: This document is an official certification issued by the 
           barangay confirming that the holder is a resident of that specific barangay and has
            no outstanding obligations such as unpaid taxes or fees. It's often required for a 
            variety of purposes, including employment, business permits, applying for government IDs, or legal transactions.
-
+          </label>
+          </div>
           <form onSubmit={handleSubmit}>
-            <div className="pt-10 pb-4">
-              <label htmlFor="firstName" className="text-white">Full Name:</label>
+            <div className="pt-10 pb-3">
+              <label htmlFor="Enter your full name " className="text-gray-700" >Full Name:</label>
               <input
                 id="firstName"
-                type="text"
-                className="text-black"
+                type="=text"
+                className="text-black border-2 border-black rounded focus:border-blue-500 focus:outline-none"
+                // placeholder="full name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 required
               />
             </div>
-            <div className="pt-10 pb-4">
-              <label htmlFor="email" className="text-white">Email:</label>
+            <div className="pb-2">
+              <label htmlFor="email" className="text-gray-700">Email:</label>
               <input
                 id="email"
                 type="text"
-                className="text-black"
+                className="text-black border-2 border-black rounded focus:border-blue-500 focus:outline-none"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -121,7 +125,7 @@ export default function Page() {
                 <option value="incident">Incident</option>
               </select>
             </div>
-            <button type="submit" className="mt-5 w-[40%] rounded bg-blue-500 text-white py-2 text-md font-bold font-mono hover:bg-blue-600 mb-10">
+            <button type="submit" className=" mt-5 w-[40%] rounded bg-blue-500 text-white py-2 text-md font-bold font-mono hover:bg-blue-600 mb-10">
               Submit
             </button>
           </form>

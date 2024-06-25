@@ -91,11 +91,11 @@ export default function Home() {
 
            </div>
          </div>
-         <div class="headings *:text-center *:leading-4 mb-5">
-          <p class="text-xl font-serif font-semibold text-[#434955]">Barangay Indigency</p>
+         <div class="headings text-center leading-4 mb-5">
+          <p class="text-xl  text-black font-serif font-semibold text-[#434955]">Barangay Indigency</p>
 
          </div>
-         <div class="  text-gray-400 text-base text-center font-medium px-10 mb-10">
+         <div class="  text-gray-500 text-base text-center font-medium px-10 mb-10">
          Certificate for individuals in financial need, providing access to government assistance.
          </div>
          

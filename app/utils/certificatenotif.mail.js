@@ -7,7 +7,7 @@ const transporter = nodemailer.createTransport({
     auth: {
         type: "OAuth2",
         user: "norepbarangayrizal@gmail.com",
-        accessToken: "ya29.a0AXooCgs64UzOhbO-3IEQ1YMEiCq9jSELLDzm2RoGCGLE2u6e2Dn7UjOlJu2roGsWZtYEpXs4r-hT1PbAYboU0x8weeoMPzIa1Cd1UhLDqzWqR5UHy3a9PtVsRhVmt-grU7wwpDI1XzMdr-ZoIyIcw2ASWu7HcNpXoI0XaCgYKAXQSARMSFQHGX2MiiQd75_NUfhZJ_UaompsAuw0171",
+        accessToken: "ya29.a0AXooCgudliiFv2AyeHztJu5SsA9BTaZ-Ycr56J1PoFi8h4qPuo8YMnD8G5RYUGpilvlXenByWZvzcrjHpuyBVTXLXAxTwBXI8gCT1HTFeKnkOCOnQ3IVLg8Yvj8HRtGcAt2NqmRNZ0qVZ4YxgzBNsF3CSDAZJi-LbeJV3waCgYKAVUSARMSFQHGX2Mih2H6zk5o7b7rEBGhdyMsFg0173",
     },
 });
 
@@ -18,7 +18,7 @@ const sendNotificationEmail = async ({ firstName, email, purpose , documentTitle
             <p>Dear ${firstName},</p>
             <p>Your requested "${documentTitle}" for "${purpose}" is now ready for pickup.</p>
             <p>Please proceed to the designated location to collect your certificate.</p>
-            <p>Thank you.</p>
+            <p>Thank you for transacting using our Barangay Certification Request System.</p>
         `;
 
         const response = await transporter.sendMail({

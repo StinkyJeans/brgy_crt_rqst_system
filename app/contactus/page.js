@@ -75,10 +75,11 @@ export default function ContactForm() {
                                     />
                                 </div>
                             </div>
-                            <h2 className="text-3xl font-bold tracking-tight text-gray-500">Get in touch</h2>
-                            <p className="mt-6 text-lg leading-8 text-gray-500">
-                                Proin volutpat consequat porttitor cras nullam gravida at. Orci molestie a eu arcu. Sed ut tincidunt
-                                integer elementum id sem. Arcu sed malesuada et magna.
+                            <h2 className="text-3xl font-bold tracking-tight text-black">Get in touch</h2>
+                            <p className="mt-6 text-lg leading-8 text-black">
+                            Feel free to reach out if you encounter difficulties with the barangay certification request system, 
+                            have inquiries, or simply need clarification on any aspect of the process.  
+                            We're here to help ensure a smooth and efficient experience.
                             </p>
                             <dl className="mt-10 space-y-4 text-base leading-7 text-gray-500">
                                 <div className="flex gap-x-4">
@@ -191,10 +192,11 @@ export default function ContactForm() {
                                         <textarea
                                           name="message"
                                          value={message}
+                                         text = "enter"
                                          required
                                          onChange={(e) => setMessage(e.target.value)}
                                          rows={4}
-                                         className="border-solid block w-full rounded-md border-0  px-3.5 py-2  sm:text-sm sm:leading-6"
+                                         className="border-solid block w-full rounded-md border-0  p-20  sm:text-sm sm:leading-6"
                                          defaultValue={''}
                                       />
                                         </div>
