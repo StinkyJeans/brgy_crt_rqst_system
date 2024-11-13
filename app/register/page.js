@@ -17,7 +17,6 @@ const Register = () => {
   const [birthDate, setBirthDate] = useState("");
   const [gender, setGender] = useState("");
   const [file, setFile] = useState();
-  // const [emailVerified, setEmailVerified] = useState(false); // New state variable
   const { edgestore } = useEdgeStore();
   const [loading, setLoading] = useState(false);
 
@@ -100,14 +99,12 @@ const Register = () => {
       if (res.status === 400) {
         setError("This email is already registered");
       } else if (res.status === 200) {
-        // Display message to indicate user is being verified
+       
         setError("User is being verified. Please wait for 2-3 working days.");
 
-        // Simulate delay before redirecting to login page
         setTimeout(() => {
-          // Redirect to login page after delay
           router.push("/login");
-        }, 3000); // Delay for 3 seconds (adjust as needed)
+        }, 3000); 
       }
     } catch (error) {
       setError("Error, try again");
