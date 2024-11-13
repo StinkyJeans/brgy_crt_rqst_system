@@ -204,14 +204,14 @@ export default function ContactForm() {
                                 </div>
                             )}
                             <div className="mt-8 flex justify-end">
-                             {/* Button with spinner */}
+                            
                              <button
                                type="submit"
                                className={`relative rounded-md bg-blue-500 px-5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 ${loading ? 'cursor-not-allowed' : ''}`}
-                               disabled={loading} // Disable button when loading
-                               style={{ padding: '0.75rem' }} // Add padding to the button
+                               disabled={loading} 
+                               style={{ padding: '0.75rem' }}
                              >
-                               {/* Conditional rendering of text or spinner */}
+                           
                                {loading ? (
                                  <div className="flex items-center">
                                     <span className="mr-2">Sending...</span>
