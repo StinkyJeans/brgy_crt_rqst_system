@@ -26,7 +26,7 @@ export const POST = async (request) => {
     gender,
     image,
     role: "user",
-    verified: false, // Set as false initially
+    verified: false, 
   });
 
   try {
