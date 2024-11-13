@@ -44,7 +44,7 @@ export default function AdminPage() {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json(); // Parse JSON here
+        const data = await response.json(); 
         setUsers(data);
       } catch (error) {
         console.error('Failed to fetch users:', error);
