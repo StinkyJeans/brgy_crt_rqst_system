@@ -9,7 +9,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false); // Track if form is submitted
+  const [formSubmitted, setFormSubmitted] = useState(false); 
   
   useEffect(() => {
     if (status === "authenticated" && session?.user?.role === 'admin') {
@@ -28,7 +28,7 @@ const Login = () => {
     e.preventDefault();
     setError("");
     setLoading(true);
-    setFormSubmitted(true); // Set form as submitted
+    setFormSubmitted(true); 
 
     const email = e.target[0].value;
     const password = e.target[1].value;
