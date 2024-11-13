@@ -3,7 +3,7 @@ import connect from '@/app/utils/db';
 import User from '@/models/User';
 import { NextResponse } from 'next/server';
 
-// Function to check if the user is an admin
+
 const isAdmin = (user) => {
   return user && user.role === 'admin';
 };
@@ -11,10 +11,10 @@ const isAdmin = (user) => {
 export const PUT = async (request) => {
   const { email } = request.params;
 
-  // Get the authenticated user from request.locals
+ 
   const user = request.locals.session?.user;
 
-  // Check if the authenticated user is an admin
+  
   if (!isAdmin(user)) {
     return new NextResponse("Only admin users can verify users", { status: 403 });
   }
@@ -22,14 +22,13 @@ export const PUT = async (request) => {
   await connect();
 
   try {
-    // Find the user by email
     const userToUpdate = await User.findOne({ email });
 
     if (!userToUpdate) {
       return new NextResponse("User not found", { status: 404 });
     }
 
-    // Update the user's verification status to true
+ 
     userToUpdate.verified = true;
     await userToUpdate.save();
 
