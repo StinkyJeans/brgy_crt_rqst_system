@@ -8,10 +8,9 @@ export default function Page() {
   const [documentTitle , setDocumentTitle] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [email, setEmail ] = useState('');
-  const [status, setStatus] = useState('pending'); // Default status
+  const [status, setStatus] = useState('pending'); 
 
   useEffect(() => {
-    // Set document title to "Barangay Clearance" by default
     setDocumentTitle('Barangay Clearance');
   }, []);
 
