@@ -17,11 +17,9 @@ export const authOptions = {
       async authorize(credentials) {
         try {
           await connect(); 
-          // If not admin, proceed with regular user authentication
           const user = await User.findOne({ email: credentials.email });
           if (user) {
             if (!user.verified) {
-              // User is not verified, deny login
               return null;
             }
             const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password);
