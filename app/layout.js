@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import 'tailwindcss/tailwind.css'; // Import Tailwind CSS
+import 'tailwindcss/tailwind.css'; 
 import Navbar from "./components/Navbar";
 import { EdgeStoreProvider } from './lib/edgestore';
 import { getServerSession } from "next-auth";
@@ -20,7 +20,6 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* <div className="absolute inset-0 bg-cover bg-center z-[-1]" style={{ backgroundImage: "url('./login-bg.png')" }}> */}
           <SessionProvider session={session}>
             <EdgeStoreProvider>
             <Navbar />
