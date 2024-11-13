@@ -11,27 +11,21 @@ export default function Home() {
   const router = useRouter();
 
   const BarangayClearance= () => {
-    // Navigate to another page
     router.push('/certificates/clearance');
   }
   const BarangayIndigency= () => {
-    // Navigate to another page
     router.push('/certificates/indigency');
   }
   const BarangayRecidency= () => {
-    // Navigate to another page
     router.push('/certificates/recidency');
   }
   const BusinessPermit= () => {
-    // Navigate to another page
     router.push('/certificates/permit');
   }
   const Blotter= () => {
-    // Navigate to another page
     router.push('/certificates/blotter');
   }
   const Cedula= () => {
-    // Navigate to another page
     router.push('/certificates/cedula');
   }
 
@@ -52,10 +46,10 @@ export default function Home() {
            >
       <Image
         className='mb-5'
-        src="/half indigency.jpg" // Replace this with your image source
+        src="/half indigency.jpg" 
         alt="My Image"
-        width={500} // Set width of the image
-        height={300} // Set height of the image
+        width={500} 
+        height={300} 
       />
 
            </div>
@@ -83,10 +77,10 @@ export default function Home() {
            >
                   <Image
         className='mb-5'
-        src="/half indigency.jpg" // Replace this with your image source
+        src="/half indigency.jpg" 
         alt="My Image"
-        width={500} // Set width of the image
-        height={300} // Set height of the image
+        width={500} 
+        height={300} 
       />
 
            </div>
@@ -112,10 +106,10 @@ export default function Home() {
            >
         <Image
         className='mb-1'
-        src="/half residency.jpg" // Replace this with your image source
+        src="/half residency.jpg" 
         alt="My Image"
-        width={500} // Set width of the image
-        height={300} // Set height of the image
+        width={500} 
+        height={300} 
       />
 
            </div>
@@ -141,10 +135,10 @@ export default function Home() {
            >
                    <Image
           
-        src="/half Permit.jpg" // Replace this with your image source
+        src="/half Permit.jpg" 
         alt="My Image"
-        width={500} // Set width of the image
-        height={300} // Set height of the image
+        width={500} 
+        height={300} 
       />
 
            </div>
@@ -170,10 +164,10 @@ export default function Home() {
            >
                              <Image
         className='mb-1'
-        src="/half blotter.jpg" // Replace this with your image source
+        src="/half blotter.jpg"
         alt="My Image"
-        width={500} // Set width of the image
-        height={300} // Set height of the image
+        width={500}
+        height={300}
       />
 
            </div>
@@ -199,10 +193,10 @@ export default function Home() {
            >
                                           <Image
         className='mb-7 '
-        src="/half cedula.jpg" // Replace this with your image source
+        src="/half cedula.jpg" 
         alt="My Image"
-        width={500} // Set width of the image
-        height={300} // Set height of the image
+        width={500} 
+        height={300}
       />
 
            </div>
