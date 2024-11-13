@@ -1,11 +1,9 @@
-// components/FilePicker.js
-
 import React from 'react';
 
 const FilePicker = ({ onChange }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    onChange(file); // Pass the selected file to the parent component
+    onChange(file); 
   };
 
   return (
