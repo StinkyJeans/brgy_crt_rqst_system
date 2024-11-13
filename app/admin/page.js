@@ -3,7 +3,7 @@ import React, {useRef, useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import UserPage from './Sidebar/users/page';
-import classNames from 'classnames'; // Optional: for conditional classNames
+import classNames from 'classnames'; 
 
 
 
@@ -61,7 +61,7 @@ export default function AdminPage() {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json(); // Parse JSON here
+        const data = await response.json(); 
         setCertificates(data);
       } catch (error) {
         console.error('Failed to fetch certificates:', error);
@@ -79,22 +79,22 @@ export default function AdminPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }), // Include the email in the request body
+        body: JSON.stringify({ email }), 
       });
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
   
-      // If the response is OK, update the user list after verification
+      
       const updatedUsers = users.map(user => {
         if (user.email === email) {
-          return { ...user, verified: true }; // Mark the user as verified
+          return { ...user, verified: true }; 
         }
         return user;
       });
   
-      // Update the state with the updated user list
+      
       setUsers(updatedUsers);
     } catch (error) {
       console.error('Error verifying user:', error);
@@ -136,22 +136,21 @@ export default function AdminPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ certificateId }), // Include the certificate ID in the request body
+        body: JSON.stringify({ certificateId }), 
       });
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
   
-      // If the response is OK, update the certificate list after completion
+      
       const updatedCertificates = certificates.map(certificate => {
         if (certificate._id === certificateId) {
-          return { ...certificate, status: 'complete' }; // Mark the certificate as complete
+          return { ...certificate, status: 'complete' }; 
         }
         return certificate;
       });
   
-      // Update the state with the updated certificate list
       setCertificates(updatedCertificates);
     } catch (error) {
       console.error('Error completing certificate:', error);
@@ -180,22 +179,22 @@ export default function AdminPage() {
     }
   };
   const handlePrint = (documentTitle) => {
-    // Replace "pdf_files/" with the appropriate path to your PDF files directory
+  
     const pdfUrl = `/pdf_files/${documentTitle}.pdf`;
   
     // Create a new window with the PDF URL
     const printWindow = window.open(pdfUrl, "_blank");
   
-    // Ensure the window has fully loaded before attempting to print
+   
     printWindow.onload = () => {
-      // Print the contents of the window
+    
       printWindow.print();
     };
   };
 
   const toggleUserPage = () => {
     setShowAllUsers(!showAllUsers);
-    setActiveButton(null); // Reset activeButton state
+    setActiveButton(null);
     setShowUserVerification(false);
     setShowCertificateVerification(false);
   };
@@ -204,14 +203,14 @@ export default function AdminPage() {
     setShowUserVerification(true);
     setShowCertificateVerification(false);
     setShowAllUsers(false);
-    setActiveButton('userVerification'); // Update activeButton state
+    setActiveButton('userVerification'); 
   };
     
   const handleCertificateVerification = () => {
     setShowCertificateVerification(true);
     setShowUserVerification(false);
     setShowAllUsers(false);
-    setActiveButton('certificateVerification'); // Update activeButton state
+    setActiveButton('certificateVerification'); 
   };
 
   const nextPage = () => {
@@ -230,8 +229,8 @@ export default function AdminPage() {
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = users
-    .filter(user => !user.verified) // Filter first
-    .slice(indexOfFirstUser, indexOfLastUser); // Then slice
+    .filter(user => !user.verified) 
+    .slice(indexOfFirstUser, indexOfLastUser); 
 
   const nextCertPage = () => {
     if (currentCertPage * certsPerPage < certificates.length) {
